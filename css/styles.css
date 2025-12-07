@@ -188,35 +188,28 @@ nav.scrolled {
    HERO SECTION
    ============================================ */
 .hero {
-    background: var(--gradient-primary);
-    color: white;
+    background-image: url('../assets/images/hero-illustration.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    color: var(--dark);
     padding: 8rem 2rem 6rem;
     position: relative;
     overflow: hidden;
-}
-
-.hero::before,
-.hero::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    max-width: 100%;
+    width: 100%;
 }
 
 .hero::before {
-    top: -20%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
-    animation: float 20s infinite ease-in-out;
-}
-
-.hero::after {
-    bottom: -15%;
-    left: -5%;
-    width: 400px;
-    height: 400px;
-    animation: float 15s infinite ease-in-out reverse;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(247, 250, 252, 0.70);
+    z-index: 0;
 }
 
 @keyframes float {
@@ -243,8 +236,8 @@ nav.scrolled {
     margin-bottom: 1.5rem;
     line-height: 1.1;
     font-weight: 800;
-    color: white;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: var(--dark);
+    text-shadow: none;
 }
 
 .hero-subtitle {
@@ -274,16 +267,16 @@ nav.scrolled {
 }
 
 .hero-button-primary {
-    background: white;
-    color: var(--primary);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
 .hero-button-secondary {
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-    border: 2px solid white;
-    backdrop-filter: blur(10px);
+    background: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .hero-button:hover {
@@ -295,9 +288,31 @@ nav.scrolled {
    STATS SECTION
    ============================================ */
 .stats {
-    background: var(--light);
+    background-image: url('../assets/images/stats-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     padding: 3rem 2rem;
     border-bottom: 1px solid var(--light-gray);
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+}
+
+.stats::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(247, 250, 252, 0.65);
+    z-index: 0;
+}
+
+.stats-grid {
+    position: relative;
+    z-index: 1;
 }
 
 .stats-grid {
@@ -360,7 +375,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.62);
     z-index: 0;
 }
 
@@ -385,7 +400,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.90);
+    background: rgba(255, 255, 255, 0.60);
     z-index: 0;
 }
 
@@ -410,7 +425,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.93);
+    background: rgba(255, 255, 255, 0.65);
     z-index: 0;
 }
 
@@ -435,7 +450,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.68);
     z-index: 0;
 }
 
