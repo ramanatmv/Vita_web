@@ -291,7 +291,7 @@ nav.scrolled {
     background-image: url('../assets/images/stats-bg.png');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
     padding: 3rem 2rem;
     border-bottom: 1px solid var(--light-gray);
     position: relative;
@@ -363,7 +363,7 @@ section {
     background-image: url('../assets/images/about-bg.png');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
     position: relative;
     max-width: 100%;
 }
@@ -388,7 +388,7 @@ section {
     background-image: url('../assets/images/mission-bg.png');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
     position: relative;
     max-width: 100%;
 }
@@ -413,7 +413,7 @@ section {
     background-image: url('../assets/images/products-bg.png');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
     position: relative;
     max-width: 100%;
 }
@@ -438,7 +438,7 @@ section {
     background-image: url('../assets/images/form-bg.png');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
     position: relative;
     max-width: 100%;
 }
@@ -993,6 +993,19 @@ footer {
 
     .hero {
         padding: 5rem 2rem 4rem;
+    }
+
+    /* Mobile background image optimizations */
+    .hero,
+    .stats,
+    #about,
+    #mission,
+    #products,
+    #submit-idea {
+        background-attachment: scroll !important;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     section {
