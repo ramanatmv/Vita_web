@@ -355,7 +355,10 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
 
         blogModal.style.display = 'block';
+        blogModal.scrollTop = 0; // Reset scroll position
         document.body.style.overflow = 'hidden';
+
+        console.log('Modal opened. Content length:', post.content ? post.content.length : '0');
     }
 
     // Close Modal Logic

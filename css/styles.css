@@ -1214,24 +1214,32 @@ html {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
-    overflow-y: scroll;
-    /* Force scrollbar */
+    /* Remove backdrop-filter for better performance stability */
+    /* backdrop-filter: blur(5px); */
+
+    /* Crucial for scrolling: */
+    overflow-x: hidden;
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    /* Prevent scroll chaining to body */
 }
 
 .modal-content {
     background-color: white;
-    margin: 40px auto;
+    margin: 2rem auto;
+    /* Top/Bottom margin */
     padding: 0;
     border-radius: 12px;
     max-width: 800px;
-    width: 90%;
+    width: 92%;
     position: relative;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
     height: auto;
-    /* Ensure bottom margin for scrolling clearance */
-    margin-bottom: 80px;
+    /* Ensure there's space at the bottom to scroll past */
+    margin-bottom: 5rem;
+    display: block;
+    pointer-events: auto;
 }
 
 @keyframes slideUp {
