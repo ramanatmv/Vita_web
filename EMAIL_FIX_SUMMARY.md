@@ -7,7 +7,7 @@ The "Submit Your Idea" form on your VitaInspire website was not sending emails. 
 ## Changes Made
 
 ### 1. HTML Form (`index.html`)
-- **Added form action**: `https://formsubmit.co/info@vitainspire.com`
+- **Added form action**: `https://formsubmit.co/ramana@vitainspire.com`
 - **Added method**: `POST`
 - **Added hidden fields** for FormSubmit configuration:
   - `_subject`: Sets email subject to "New AI Product Idea Submission - VitaInspire"
@@ -40,7 +40,7 @@ The "Submit Your Idea" form on your VitaInspire website was not sending emails. 
 2. User clicks "Submit Your Idea"
 3. Form shows "📧 Sending your idea submission..." message
 4. Form data is POST-ed to FormSubmit.co
-5. FormSubmit.co sends email to info@vitainspire.com
+5. FormSubmit.co sends email to ramana@vitainspire.com
 6. User is redirected back to your site with success message
 7. Success message displays: "✓ Thank you! Your idea has been submitted successfully..."
 
@@ -49,7 +49,7 @@ The "Submit Your Idea" form on your VitaInspire website was not sending emails. 
 **You must activate the email address before it will work:**
 
 1. Submit a test form on your website (fill out all fields with test data)
-2. Check the **info@vitainspire.com** inbox
+2. Check the **ramana@vitainspire.com** inbox
 3. Look for an email from FormSubmit with subject "Activate Form"
 4. **Click the activation link** in that email
 5. Done! All future submissions will be delivered automatically
@@ -66,7 +66,7 @@ To test that everything is working:
 4. Click "Submit Your Idea"
 5. You should see the "Sending..." message
 6. After a moment, you'll be redirected back with a green success message
-7. Check info@vitainspire.com for the email
+7. Check ramana@vitainspire.com for the email
 
 ## For Production Deployment
 

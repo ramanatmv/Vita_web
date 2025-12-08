@@ -2,22 +2,22 @@
 
 ## Overview
 
-The "Submit Your Idea" form on the VitaInspire website now sends emails to **info@vitainspire.com** using [FormSubmit.co](https://formsubmit.co), a free form submission service.
+The "Submit Your Idea" form on the VitaInspire website now sends emails to **ramana@vitainspire.com** using [FormSubmit.co](https://formsubmit.co), a free form submission service.
 
 ## How It Works
 
 1. When a user fills out and submits the form, the data is sent to FormSubmit.co
-2. FormSubmit.co processes the form and sends an email to info@vitainspire.com
+2. FormSubmit.co processes the form and sends an email to ramana@vitainspire.com
 3. The user is redirected back to the website with a success message
 
 ## First-Time Setup Required ⚠️
 
-**IMPORTANT**: On the **first form submission only**, FormSubmit.co will send a confirmation email to **info@vitainspire.com**. 
+**IMPORTANT**: On the **first form submission only**, FormSubmit.co will send a confirmation email to **ramana@vitainspire.com**. 
 
 ### Setup Steps:
 
 1. Submit a test form on your website
-2. Check the inbox for **info@vitainspire.com**
+2. Check the inbox for **ramana@vitainspire.com**
 3. Look for an email from FormSubmit with subject like "Activate Form"
 4. **Click the activation link** in that email
 5. After activation, all future form submissions will be delivered automatically
@@ -63,7 +63,7 @@ When deploying to production (e.g., Vercel), you need to:
 3. Click "Submit Your Idea"
 4. You should see a "Sending..." message
 5. After submission, you'll be redirected back with a success message
-6. Check info@vitainspire.com for the email
+6. Check ramana@vitainspire.com for the email
 
 ## Alternative Email Service Options
 
@@ -88,8 +88,8 @@ If you want to use a different email service provider in the future:
 
 ### Form not sending emails?
 1. Check if you activated the FormSubmit email (see First-Time Setup above)
-2. Check spam folder in info@vitainspire.com
-3. Verify the form action URL is correct: `https://formsubmit.co/info@vitainspire.com`
+2. Check spam folder in ramana@vitainspire.com
+3. Verify the form action URL is correct: `https://formsubmit.co/ramana@vitainspire.com`
 
 ### Users not seeing success message?
 1. Check browser console for JavaScript errors
@@ -104,7 +104,7 @@ If you want to use a different email service provider in the future:
 ## Current Configuration
 
 ```html
-<form action="https://formsubmit.co/info@vitainspire.com" method="POST">
+<form action="https://formsubmit.co/ramana@vitainspire.com" method="POST">
     <input type="hidden" name="_subject" value="New AI Product Idea Submission - VitaInspire">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="table">
