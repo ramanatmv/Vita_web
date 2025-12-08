@@ -49,12 +49,20 @@
                 ☰
             </button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#about">About</a></li>
-                <li><a href="#mission">Mission</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#blog">Daily AI Blog</a></li>
-                <li><a href="#submit-idea">Submit Idea</a></li>
-                <li><a href="#contact" class="cta-button">Get Involved</a></li>
+                <li><a href="#about" data-i18n="nav_about">About</a></li>
+                <li><a href="#mission" data-i18n="nav_mission">Mission</a></li>
+                <li><a href="#products" data-i18n="nav_products">Products</a></li>
+                <li><a href="#blog" data-i18n="nav_blog">Daily AI Blog</a></li>
+                <li><a href="#submit-idea" data-i18n="nav_submit">Submit Idea</a></li>
+                <li><a href="#contact" class="cta-button" data-i18n="nav_contact">Get Involved</a></li>
+
+                <!-- Language Selector -->
+                <li class="lang-selector">
+                    <select id="languageSelect" onchange="changeLanguage(this.value)">
+                        <option value="en">🇺🇸 English</option>
+                        <option value="hi">🇮🇳 हिंदी (Hindi)</option>
+                    </select>
+                </li>
             </ul>
         </div>
     </nav>
@@ -62,19 +70,19 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Building AI Careers,<br>Transforming Social Impact</h1>
-            <p class="hero-subtitle">
+            <h1 data-i18n="hero_title">Building AI Careers,<br>Transforming Social Impact</h1>
+            <p class="hero-subtitle" data-i18n="hero_subtitle">
                 Empowering underserved youth with AI career pathways while delivering cutting-edge
                 AI solutions to NGOs tackling critical challenges in health, education, and agriculture.
             </p>
             <div class="hero-buttons">
-                <a href="#about" class="hero-button hero-button-primary">
+                <a href="#about" class="hero-button hero-button-primary" data-i18n="hero_btn_learn">
                     Learn More →
                 </a>
-                <a href="#submit-idea" class="hero-button hero-button-secondary">
+                <a href="#submit-idea" class="hero-button hero-button-secondary" data-i18n="hero_btn_submit">
                     Submit an Idea
                 </a>
-                <a href="#contact" class="hero-button hero-button-secondary">
+                <a href="#contact" class="hero-button hero-button-secondary" data-i18n="hero_btn_involved">
                     Get Involved
                 </a>
             </div>
@@ -86,19 +94,19 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-number">5-6</div>
-                <div class="stat-label">Engineers Teamed</div>
+                <div class="stat-label" data-i18n="stat_engineers">Engineers Teamed</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">5-8</div>
-                <div class="stat-label">AI Products being Explored</div>
+                <div class="stat-label" data-i18n="stat_products">AI Products being Explored</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">3+</div>
-                <div class="stat-label">NGO collaborators being pursued</div>
+                <div class="stat-label" data-i18n="stat_ngos">NGO collaborators being pursued</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">2-3</div>
-                <div class="stat-label">Years Secured Runway</div>
+                <div class="stat-label" data-i18n="stat_runway">Years Secured Runway</div>
             </div>
         </div>
     </section>
@@ -106,8 +114,8 @@
     <!-- About Section -->
     <section id="about">
         <div class="section-header">
-            <h2 class="section-title">Bridging Two Critical Gaps</h2>
-            <p class="section-subtitle">
+            <h2 class="section-title" data-i18n="about_title">Bridging Two Critical Gaps</h2>
+            <p class="section-subtitle" data-i18n="about_subtitle">
                 We're solving two interconnected problems that prevent technology from reaching
                 those who need it most
             </p>
@@ -117,26 +125,26 @@
             <h3>Our Dual Impact Model</h3>
             <div class="dual-impact">
                 <div class="impact-box">
-                    <h4>🎓 The Talent Gap</h4>
-                    <p>
+                    <h4 data-i18n="impact_talent_title">🎓 The Talent Gap</h4>
+                    <p data-i18n="impact_talent_desc">
                         Graduates from low-income families lack access to high-quality AI/ML career pathways and
                         mentorship. Despite their talent and drive, systemic barriers prevent them from entering the AI
                         field.
                     </p>
-                    <p style="margin-top: 1rem;">
+                    <p style="margin-top: 1rem;" data-i18n="impact_talent_sol">
                         <strong>Our Solution:</strong> Create structured career pathways with
                         mentorship, training, and real-world project experience that transforms promising graduates into
                         skilled AI engineers.
                     </p>
                 </div>
                 <div class="impact-box">
-                    <h4>💻 The Technology Gap</h4>
-                    <p>
+                    <h4 data-i18n="impact_tech_title">💻 The Technology Gap</h4>
+                    <p data-i18n="impact_tech_desc">
                         NGOs struggle with inefficiencies—manual paperwork, lack of data infrastructure—but cannot
                         afford
                         expensive AI solutions. They need technology but lack resources to implement it.
                     </p>
-                    <p style="margin-top: 1rem;">
+                    <p style="margin-top: 1rem;" data-i18n="impact_tech_sol">
                         <strong>Our Solution:</strong> Deliver enterprise-grade AI products at
                         no cost or minimal cost to NGOs, enabling them to amplify their impact and serve more people
                         effectively.
@@ -149,8 +157,8 @@
     <!-- Mission Section -->
     <section id="mission">
         <div class="section-header">
-            <h2 class="section-title">Our Mission</h2>
-            <p class="section-subtitle">
+            <h2 class="section-title" data-i18n="mission_title">Our Mission</h2>
+            <p class="section-subtitle" data-i18n="mission_subtitle">
                 Building a sustainable AI innovation center that creates careers and delivers
                 impact
             </p>
@@ -159,8 +167,8 @@
         <div class="mission-grid">
             <div class="mission-card">
                 <div class="mission-icon">🎯</div>
-                <h3>Talent Development</h3>
-                <p>
+                <h3 data-i18n="mission_talent_title">Talent Development</h3>
+                <p data-i18n="mission_talent_desc">
                     Provide livelihoods and advanced AI career pathways for underprivileged graduates and engineers who
                     have struggled to find stable employment. We invest in people with potential, not just credentials.
                 </p>
@@ -168,8 +176,8 @@
 
             <div class="mission-card">
                 <div class="mission-icon">💡</div>
-                <h3>Product Innovation</h3>
-                <p>
+                <h3 data-i18n="mission_product_title">Product Innovation</h3>
+                <p data-i18n="mission_product_desc">
                     Build and deploy AI products that solve urgent, specific problems for NGOs in health, education, and
                     agriculture. Every product we create directly improves lives in underserved communities.
                 </p>
@@ -177,8 +185,8 @@
 
             <div class="mission-card">
                 <div class="mission-icon">🌍</div>
-                <h3>Sustainable Impact</h3>
-                <p>
+                <h3 data-i18n="mission_impact_title">Sustainable Impact</h3>
+                <p data-i18n="mission_impact_desc">
                     Establish a foundation-funded, non-profit model with 2-3 year secured runway. IP owned by US entity;
                     social-use license offered free or at-cost to NGOs globally.
                 </p>
@@ -189,8 +197,8 @@
     <!-- Products Section -->
     <section id="products">
         <div class="section-header">
-            <h2 class="section-title">AI Products for Social Good</h2>
-            <p class="section-subtitle">
+            <h2 class="section-title" data-i18n="products_title">AI Products for Social Good</h2>
+            <p class="section-subtitle" data-i18n="products_subtitle">
                 Practical AI solutions addressing real-world challenges faced by NGOs and social workers
             </p>
         </div>
@@ -321,8 +329,8 @@
     <!-- Blog Section -->
     <section id="blog">
         <div class="section-header">
-            <h2 class="section-title">Daily AI Research</h2>
-            <p class="section-subtitle">
+            <h2 class="section-title" data-i18n="blog_title">Daily AI Research</h2>
+            <p class="section-subtitle" data-i18n="blog_subtitle">
                 Exploring the latest AI applications in social service, agriculture, health, and education from around
                 the globe.
             </p>
@@ -337,8 +345,8 @@
     <!-- Submit Idea Section -->
     <section id="submit-idea">
         <div class="section-header">
-            <h2 class="section-title">Have an AI Product Idea?</h2>
-            <p class="section-subtitle">
+            <h2 class="section-title" data-i18n="form_title">Have an AI Product Idea?</h2>
+            <p class="section-subtitle" data-i18n="form_subtitle">
                 We're looking for impactful AI product ideas that can solve real problems for
                 NGOs and underserved communities. Share your vision with us!
             </p>
@@ -355,22 +363,22 @@
                 <input type="text" name="_honey" style="display:none">
 
                 <div class="form-group">
-                    <label for="name">Your Name *</label>
+                    <label for="name" data-i18n="label_name">Your Name *</label>
                     <input type="text" id="name" name="name" required placeholder="John Doe">
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email Address *</label>
+                    <label for="email" data-i18n="label_email">Email Address *</label>
                     <input type="email" id="email" name="email" required placeholder="john@example.com">
                 </div>
 
                 <div class="form-group">
-                    <label for="organization">Organization (if applicable)</label>
+                    <label for="organization" data-i18n="label_org">Organization (if applicable)</label>
                     <input type="text" id="organization" name="organization" placeholder="Your NGO or Company">
                 </div>
 
                 <div class="form-group">
-                    <label for="sector">Social Impact Sector *</label>
+                    <label for="sector" data-i18n="label_sector">Social Impact Sector *</label>
                     <select id="sector" name="sector" required>
                         <option value="">Select a sector</option>
                         <option value="Health & Nutrition">Health & Nutrition</option>
@@ -384,30 +392,30 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="problem">What Problem Does This Solve? *</label>
+                    <label for="problem" data-i18n="label_problem">What Problem Does This Solve? *</label>
                     <textarea id="problem" name="problem" required
                         placeholder="Describe the specific problem faced by NGOs, social workers, or communities that this AI product would address..."></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="solution">Your AI Product Idea *</label>
+                    <label for="solution" data-i18n="label_solution">Your AI Product Idea *</label>
                     <textarea id="solution" name="solution" required
                         placeholder="Describe your AI product idea and how it would solve the problem. What would it do? Who would use it?"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="impact">Expected Impact *</label>
+                    <label for="impact" data-i18n="label_impact">Expected Impact *</label>
                     <textarea id="impact" name="impact" required
                         placeholder="How would this product create social impact? Who benefits and how? Can you estimate the scale of impact?"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="data">Data Availability</label>
+                    <label for="data" data-i18n="label_data">Data Availability</label>
                     <textarea id="data" name="data"
                         placeholder="What data might be available or needed for this AI product? (Optional but helpful)"></textarea>
                 </div>
 
-                <button type="submit" class="submit-button">Submit Your Idea</button>
+                <button type="submit" class="submit-button" data-i18n="btn_submit_idea">Submit Your Idea</button>
             </form>
 
             <div id="formMessage"></div>
@@ -420,28 +428,28 @@
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>About VitaInspire</h3>
-                <p>
+                <h3 data-i18n="footer_about_title">About VitaInspire</h3>
+                <p data-i18n="footer_about_desc">
                     Building AI careers for underserved youth while delivering impactful AI products for NGOs in health,
                     education, and agriculture.
                 </p>
             </div>
 
             <div class="footer-section">
-                <h3>Quick Links</h3>
-                <p><a href="#about">About Us</a></p>
-                <p><a href="#mission">Our Mission</a></p>
-                <p><a href="#products">Products</a></p>
-                <p><a href="#submit-idea">Submit an Idea</a></p>
+                <h3 data-i18n="footer_quick_links">Quick Links</h3>
+                <p><a href="#about" data-i18n="nav_about">About Us</a></p>
+                <p><a href="#mission" data-i18n="nav_mission">Our Mission</a></p>
+                <p><a href="#products" data-i18n="nav_products">Products</a></p>
+                <p><a href="#submit-idea" data-i18n="nav_submit">Submit an Idea</a></p>
             </div>
 
             <div class="footer-section">
-                <h3>Get Involved</h3>
-                <p><a href="#submit-idea">Submit an Idea</a></p>
+                <h3 data-i18n="footer_get_involved">Get Involved</h3>
+                <p><a href="#submit-idea" data-i18n="nav_submit">Submit an Idea</a></p>
             </div>
 
             <div class="footer-section">
-                <h3>Contact</h3>
+                <h3 data-i18n="footer_contact">Contact</h3>
                 <p>Email: <a href="mailto:ramana@vitainspire.com">info@vitainspire.com</a></p>
                 <p>Location: United States</p>
                 <p>Operating: India & Global</p>
@@ -449,8 +457,8 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; <span id="current-year">2024</span> VitaInspire. All rights reserved. Built with ❤️ for social
-                impact.</p>
+            <p>&copy; <span id="current-year">2024</span> <span data-i18n="footer_rights">VitaInspire. All rights
+                    reserved. Built with ❤️ for social impact.</span></p>
         </div>
     </footer>
 
@@ -470,6 +478,7 @@
     </div>
 
     <!-- JavaScript -->
+    <script src="js/translations.js"></script>
     <script src="js/blog-posts.js"></script>
     <script src="js/main.js"></script>
 </body>

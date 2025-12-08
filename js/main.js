@@ -322,7 +322,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <h3>${post.title}</h3>
                     <span class="blog-date">${post.date}</span>
                     <p class="blog-excerpt">${post.excerpt}</p>
-                    <a href="#" class="read-more" data-id="${post.id}">Read Full Article →</a>
+                    <a href="#" class="read-more" data-id="${post.id}" data-i18n="read_more">Read Full Article →</a>
                 </div>
             `;
 
@@ -439,3 +439,44 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// ============================================
+// LANGUAGE MANAGER
+// ============================================
+let currentLanguage = localStorage.getItem('vita_language') || 'en';
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Set initial selection
+    const langSelect = document.getElementById('languageSelect');
+    if (langSelect) {
+        langSelect.value = currentLanguage;
+    }
+
+    // Apply initial language
+    applyLanguage(currentLanguage);
+});
+
+function changeLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('vita_language', lang);
+    applyLanguage(lang);
+}
+
+function applyLanguage(lang) {
+    if (!translations || !translations[lang]) return;
+
+    // Update all elements with data-i18n attribute
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+            // Use innerHTML to allow basic HTML tags like <br> or <strong>
+            element.innerHTML = translations[lang][key];
+        }
+    });
+
+    // Update HTML lang attribute
+    document.documentElement.lang = lang;
+
+    // Dispatch event for other components (like blog) to listen to
+    window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
+}

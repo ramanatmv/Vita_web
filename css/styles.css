@@ -183,7 +183,32 @@ nav.scrolled {
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.lang-selector {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.lang-selector select {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--light-gray);
+    background-color: transparent;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--dark-gray);
+    outline: none;
+    transition: var(--transition-fast);
+}
+
+.lang-selector select:hover,
+.lang-selector select:focus {
+    border-color: var(--primary);
+    background-color: var(--light);
 }
 
 /* ============================================
