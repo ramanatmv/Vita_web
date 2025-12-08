@@ -336,9 +336,33 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Text-to-Speech Functionality
+    let speechSynth = window.speechSynthesis;
+    let speaking = false;
+    let currentUtterance = null;
+
+    function stopSpeaking() {
+        if (speechSynth.speaking) {
+            speechSynth.cancel();
+        }
+        speaking = false;
+        updateSpeakButtonState();
+    }
+
+    function updateSpeakButtonState() {
+        const btn = document.getElementById('speakBtn');
+        if (btn) {
+            btn.innerHTML = speaking ? '⏹️ Stop Reading' : '🔊 Read Aloud';
+            btn.classList.toggle('speaking', speaking);
+        }
+    }
+
     // Open Modal
     function openBlogModal(post) {
         if (!blogModal || !modalBody) return;
+
+        // Stop any previous speech
+        stopSpeaking();
 
         modalBody.innerHTML = `
             <div class="modal-post-header">
@@ -348,6 +372,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <span>📅 ${post.date}</span>
                     <span class="author-tag">👤 ${post.author}</span>
                 </div>
+                <button id="speakBtn" class="speak-button">🔊 Read Aloud</button>
             </div>
             <div class="modal-body">
                 ${post.content}
@@ -359,6 +384,41 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.style.overflow = 'hidden';
 
         console.log('Modal opened. Content length:', post.content ? post.content.length : '0');
+
+        // Attach Speech Event Listener
+        const speakBtn = document.getElementById('speakBtn');
+        if (speakBtn) {
+            speakBtn.addEventListener('click', () => {
+                if (speaking) {
+                    stopSpeaking();
+                } else {
+                    // Create text from content (strip HTML)
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = post.content;
+                    const textToRead = `${post.title}. ${tempDiv.innerText}`; // Read title first
+
+                    currentUtterance = new SpeechSynthesisUtterance(textToRead);
+                    currentUtterance.rate = 1.0;
+                    currentUtterance.pitch = 1.0;
+
+                    // Reset state when finished
+                    currentUtterance.onend = () => {
+                        speaking = false;
+                        updateSpeakButtonState();
+                    };
+
+                    // Handle errors
+                    currentUtterance.onerror = () => {
+                        speaking = false;
+                        updateSpeakButtonState();
+                    };
+
+                    speechSynth.speak(currentUtterance);
+                    speaking = true;
+                    updateSpeakButtonState();
+                }
+            });
+        }
     }
 
     // Close Modal Logic
@@ -366,6 +426,7 @@ document.addEventListener('DOMContentLoaded', function () {
         closeModal.addEventListener('click', () => {
             blogModal.style.display = 'none';
             document.body.style.overflow = '';
+            stopSpeaking(); // Stop speech when closing
         });
     }
 
@@ -374,6 +435,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.target === blogModal) {
             blogModal.style.display = 'none';
             document.body.style.overflow = '';
+            stopSpeaking(); // Stop speech when closing
         }
     });
 });

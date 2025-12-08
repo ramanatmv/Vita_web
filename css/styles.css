@@ -1299,6 +1299,48 @@ html {
     overflow: visible;
 }
 
+.speak-button {
+    margin-top: 1rem;
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.speak-button:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.speak-button.speaking {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(245, 101, 101, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(245, 101, 101, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(245, 101, 101, 0);
+    }
+}
+
 /* Mobile responsiveness for modal */
 @media (max-width: 768px) {
     .modal-content {
