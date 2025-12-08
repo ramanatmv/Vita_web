@@ -107,6 +107,45 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.stat-number').forEach(stat => {
         statsObserver.observe(stat);
     });
+
+    // ============================================
+    // FORM SUCCESS MESSAGE FROM URL
+    // ============================================
+    // Check if redirected back after successful form submission
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        const formMessage = document.getElementById('formMessage');
+        if (formMessage) {
+            formMessage.className = 'success';
+            formMessage.style.display = 'block';
+            formMessage.textContent = '✓ Thank you! Your idea has been submitted successfully. We\'ll review it and get back to you soon.';
+
+            // Scroll to the form
+            document.getElementById('submit-idea').scrollIntoView({ behavior: 'smooth' });
+
+            // Clear the URL parameter after showing the message
+            const newUrl = window.location.pathname + window.location.hash.split('?')[0];
+            window.history.replaceState({}, document.title, newUrl);
+
+            // Hide message after 10 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 10000);
+        }
+    }
+
+    // ============================================
+    // UPDATE FORM REDIRECT URL DYNAMICALLY
+    // ============================================
+    // Update the _next field to use the current hostname (for deployment)
+    const ideaForm = document.getElementById('ideaForm');
+    if (ideaForm) {
+        const nextField = ideaForm.querySelector('input[name="_next"]');
+        if (nextField) {
+            const currentUrl = window.location.origin + window.location.pathname + '#submit-idea?success=true';
+            nextField.value = currentUrl;
+        }
+    }
 });
 
 // ============================================
@@ -131,65 +170,22 @@ function scrollToTop() {
 // FORM SUBMISSION HANDLER
 // ============================================
 function handleFormSubmit(event) {
-    event.preventDefault(); // Prevent default form submission
-
     const form = event.target;
     const formMessage = document.getElementById('formMessage');
     const submitButton = form.querySelector('.submit-button');
-
-    // Get form data
-    const formData = new FormData(form);
 
     // Show submitting state
     submitButton.disabled = true;
     submitButton.textContent = 'Submitting...';
 
+    // Show feedback message
     formMessage.style.display = 'block';
     formMessage.className = 'info';
     formMessage.textContent = '📧 Sending your idea submission...';
 
-    // Submit form via AJAX
-    fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-        .then(response => {
-            if (response.ok) {
-                // Success!
-                formMessage.className = 'success';
-                formMessage.textContent = '✓ Thank you! Your idea has been submitted successfully. We\'ll review it and get back to you soon.';
-
-                // Reset form
-                form.reset();
-
-                // Scroll to message
-                formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-                // Hide message after 10 seconds
-                setTimeout(() => {
-                    formMessage.style.display = 'none';
-                }, 10000);
-            } else {
-                // Error response
-                formMessage.className = 'error';
-                formMessage.textContent = '✗ Something went wrong. Please try again or email us directly at ramana@vitainspire.com';
-            }
-        })
-        .catch(error => {
-            // Network or other error
-            formMessage.className = 'error';
-            formMessage.textContent = '✗ Unable to submit. Please check your connection or email us directly at ramana@vitainspire.com';
-        })
-        .finally(() => {
-            // Re-enable button
-            submitButton.disabled = false;
-            submitButton.textContent = 'Submit Your Idea';
-        });
-
-    return false;
+    // Allow the form to submit normally (it will POST to formsubmit.co)
+    // The service will redirect to a thank you page or show a confirmation
+    return true;
 }
 
 // Alternative: Keep the old function for backwards compatibility
