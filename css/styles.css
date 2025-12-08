@@ -773,6 +773,12 @@ section {
     display: block;
 }
 
+#formMessage.info {
+    background: #bee3f8;
+    color: #2c5282;
+    display: block;
+}
+
 /* ============================================
    JOIN/CAREERS SECTION
    ============================================ */

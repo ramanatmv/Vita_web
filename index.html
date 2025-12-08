@@ -328,7 +328,15 @@
         </div>
 
         <div class="idea-form-container">
-            <form id="ideaForm" onsubmit="submitIdea(event)">
+            <form id="ideaForm" action="https://formsubmit.co/info@vitainspire.com" method="POST"
+                onsubmit="return handleFormSubmit(event)">
+                <!-- FormSubmit Configuration -->
+                <input type="hidden" name="_subject" value="New AI Product Idea Submission - VitaInspire">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="http://localhost:8080/#submit-idea?success=true">
+                <input type="text" name="_honey" style="display:none">
+
                 <div class="form-group">
                     <label for="name">Your Name *</label>
                     <input type="text" id="name" name="name" required placeholder="John Doe">
@@ -348,13 +356,13 @@
                     <label for="sector">Social Impact Sector *</label>
                     <select id="sector" name="sector" required>
                         <option value="">Select a sector</option>
-                        <option value="health">Health & Nutrition</option>
-                        <option value="education">Education & Learning</option>
-                        <option value="agriculture">Agriculture & Livelihoods</option>
-                        <option value="women">Women & Children</option>
-                        <option value="environment">Environment & Climate</option>
-                        <option value="governance">Governance & Rights</option>
-                        <option value="other">Other</option>
+                        <option value="Health & Nutrition">Health & Nutrition</option>
+                        <option value="Education & Learning">Education & Learning</option>
+                        <option value="Agriculture & Livelihoods">Agriculture & Livelihoods</option>
+                        <option value="Women & Children">Women & Children</option>
+                        <option value="Environment & Climate">Environment & Climate</option>
+                        <option value="Governance & Rights">Governance & Rights</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
 

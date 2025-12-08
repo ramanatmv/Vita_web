@@ -3,8 +3,8 @@
 // ============================================
 // SMOOTH SCROLL FUNCTIONALITY
 // ============================================
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
+
     // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     behavior: 'smooth',
                     block: 'start'
                 });
-                
+
                 // Close mobile menu if open
                 const navLinks = document.getElementById('navLinks');
                 if (navLinks && navLinks.classList.contains('active')) {
@@ -24,19 +24,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // ============================================
     // SCROLL TO TOP BUTTON
     // ============================================
     const scrollButton = document.querySelector('.scroll-to-top');
-    
+
     window.addEventListener('scroll', () => {
         if (window.pageYOffset > 300) {
             scrollButton.classList.add('visible');
         } else {
             scrollButton.classList.remove('visible');
         }
-        
+
         // Add shadow to nav on scroll
         const nav = document.querySelector('nav');
         if (window.pageYOffset > 50) {
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             nav.classList.remove('scrolled');
         }
     });
-    
+
     // ============================================
     // INTERSECTION OBSERVER FOR ANIMATIONS
     // ============================================
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -62,12 +62,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, observerOptions);
-    
+
     // Observe all cards and sections
     document.querySelectorAll('.mission-card, .product-card, .impact-box, .position-card').forEach(el => {
         observer.observe(el);
     });
-    
+
     // ============================================
     // ANIMATED STATISTICS
     // ============================================
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
             element.textContent = Math.floor(current) + suffix;
         }, 16);
     };
-    
+
     // Animate stat numbers when they come into view
     const statsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -103,10 +103,49 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, { threshold: 0.5 });
-    
+
     document.querySelectorAll('.stat-number').forEach(stat => {
         statsObserver.observe(stat);
     });
+
+    // ============================================
+    // FORM SUCCESS MESSAGE FROM URL
+    // ============================================
+    // Check if redirected back after successful form submission
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        const formMessage = document.getElementById('formMessage');
+        if (formMessage) {
+            formMessage.className = 'success';
+            formMessage.style.display = 'block';
+            formMessage.textContent = '✓ Thank you! Your idea has been submitted successfully. We\'ll review it and get back to you soon.';
+
+            // Scroll to the form
+            document.getElementById('submit-idea').scrollIntoView({ behavior: 'smooth' });
+
+            // Clear the URL parameter after showing the message
+            const newUrl = window.location.pathname + window.location.hash.split('?')[0];
+            window.history.replaceState({}, document.title, newUrl);
+
+            // Hide message after 10 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 10000);
+        }
+    }
+
+    // ============================================
+    // UPDATE FORM REDIRECT URL DYNAMICALLY
+    // ============================================
+    // Update the _next field to use the current hostname (for deployment)
+    const ideaForm = document.getElementById('ideaForm');
+    if (ideaForm) {
+        const nextField = ideaForm.querySelector('input[name="_next"]');
+        if (nextField) {
+            const currentUrl = window.location.origin + window.location.pathname + '#submit-idea?success=true';
+            nextField.value = currentUrl;
+        }
+    }
 });
 
 // ============================================
@@ -130,76 +169,28 @@ function scrollToTop() {
 // ============================================
 // FORM SUBMISSION HANDLER
 // ============================================
-function submitIdea(event) {
-    event.preventDefault();
-    
+function handleFormSubmit(event) {
     const form = event.target;
     const formMessage = document.getElementById('formMessage');
     const submitButton = form.querySelector('.submit-button');
-    
-    // Get form data
-    const formData = {
-        name: form.name.value,
-        email: form.email.value,
-        organization: form.organization.value,
-        sector: form.sector.value,
-        problem: form.problem.value,
-        solution: form.solution.value,
-        impact: form.impact.value,
-        data: form.data.value
-    };
-    
-    // Disable submit button
+
+    // Show submitting state
     submitButton.disabled = true;
     submitButton.textContent = 'Submitting...';
-    
-    // Simulate form submission (replace with actual API call)
-    setTimeout(() => {
-        // Success message
-        formMessage.className = 'success';
-        formMessage.textContent = '✓ Thank you! Your idea has been submitted successfully. We\'ll review it and get back to you soon.';
-        
-        // Log to console (in production, send to backend)
-        console.log('Form submitted:', formData);
-        
-        // Reset form
-        form.reset();
-        
-        // Re-enable button
-        submitButton.disabled = false;
-        submitButton.textContent = 'Submit Your Idea';
-        
-        // Hide message after 5 seconds
-        setTimeout(() => {
-            formMessage.style.display = 'none';
-        }, 5000);
-        
-    }, 1500);
-    
-    // TODO: Replace setTimeout with actual fetch/AJAX call
-    /*
-    fetch('/api/submit-idea', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        formMessage.className = 'success';
-        formMessage.textContent = '✓ Thank you! Your idea has been submitted successfully.';
-        form.reset();
-    })
-    .catch(error => {
-        formMessage.className = 'error';
-        formMessage.textContent = '✗ Something went wrong. Please try again later.';
-    })
-    .finally(() => {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Submit Your Idea';
-    });
-    */
+
+    // Show feedback message
+    formMessage.style.display = 'block';
+    formMessage.className = 'info';
+    formMessage.textContent = '📧 Sending your idea submission...';
+
+    // Allow the form to submit normally (it will POST to formsubmit.co)
+    // The service will redirect to a thank you page or show a confirmation
+    return true;
+}
+
+// Alternative: Keep the old function for backwards compatibility
+function submitIdea(event) {
+    return handleFormSubmit(event);
 }
 
 // ============================================
@@ -226,7 +217,7 @@ if ('IntersectionObserver' in window) {
             }
         });
     });
-    
+
     document.querySelectorAll('img.lazy').forEach(img => {
         imageObserver.observe(img);
     });
@@ -249,9 +240,9 @@ document.addEventListener('keydown', (e) => {
 // DISABLE CONSOLE LOGS IN PRODUCTION
 // ============================================
 if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-    console.log = function() {};
-    console.warn = function() {};
-    console.error = function() {};
+    console.log = function () { };
+    console.warn = function () { };
+    console.error = function () { };
 }
 
 // ============================================
@@ -263,13 +254,13 @@ function trackEvent(category, action, label) {
     //     'event_category': category,
     //     'event_label': label
     // });
-    
+
     console.log('Event tracked:', { category, action, label });
 }
 
 // Track button clicks
 document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('cta-button') || 
+    if (e.target.classList.contains('cta-button') ||
         e.target.classList.contains('hero-button')) {
         trackEvent('Button', 'Click', e.target.textContent);
     }
