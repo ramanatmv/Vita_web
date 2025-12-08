@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         `;
 
-        blogModal.style.display = 'flex';
+        blogModal.style.display = 'block';
         document.body.style.overflow = 'hidden'; // Prevent background scrolling
     }
 
