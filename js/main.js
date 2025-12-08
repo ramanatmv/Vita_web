@@ -299,3 +299,78 @@ document.addEventListener('click', (e) => {
         trackEvent('Button', 'Click', e.target.textContent);
     }
 });
+
+// ============================================
+// BLOG FUNCTIONALITY
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const blogGrid = document.getElementById('blogGrid');
+    const blogModal = document.getElementById('blogModal');
+    const modalBody = document.getElementById('modalBody');
+    const closeModal = document.querySelector('.close-modal');
+
+    // Render Blog Posts
+    if (blogGrid && typeof blogPosts !== 'undefined') {
+        blogPosts.forEach(post => {
+            const card = document.createElement('div');
+            card.className = 'blog-card';
+            card.innerHTML = `
+                <div class="blog-card-header">
+                    <span class="blog-category">${post.category}</span>
+                </div>
+                <div class="blog-card-content">
+                    <h3>${post.title}</h3>
+                    <span class="blog-date">${post.date}</span>
+                    <p class="blog-excerpt">${post.excerpt}</p>
+                    <a href="#" class="read-more" data-id="${post.id}">Read Full Article →</a>
+                </div>
+            `;
+            
+            // Add click event to open modal
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                openBlogModal(post);
+            });
+
+            blogGrid.appendChild(card);
+        });
+    }
+
+    // Open Modal
+    function openBlogModal(post) {
+        if (!blogModal || !modalBody) return;
+        
+        modalBody.innerHTML = `
+            <div class="modal-post-header">
+                <span class="blog-category" style="color:var(--primary); margin-bottom:0.5rem;">${post.category}</span>
+                <h2>${post.title}</h2>
+                <div class="modal-metadata">
+                    <span>📅 ${post.date}</span>
+                    <span class="author-tag">👤 ${post.author}</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                ${post.content}
+            </div>
+        `;
+        
+        blogModal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    // Close Modal Logic
+    if (closeModal) {
+        closeModal.addEventListener('click', () => {
+            blogModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    // Close on outside click
+    window.addEventListener('click', (e) => {
+        if (e.target === blogModal) {
+            blogModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+});

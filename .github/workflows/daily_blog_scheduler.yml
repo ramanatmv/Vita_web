@@ -1,0 +1,38 @@
+name: Daily AI Blog Research
+
+on:
+  schedule:
+    # Runs at 09:00 UTC every day (2:30 PM IST)
+    - cron: '0 9 * * *'
+  workflow_dispatch: # Allows manual triggering from GitHub UI
+
+jobs:
+  research-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to commit changes
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install -r scripts/requirements.txt
+          
+      - name: Run AI Researcher
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/daily_researcher.py
+
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "🤖 Daily AI Blog Update [skip ci]"
+          branch: main
+          file_pattern: 'js/blog-posts.js'
