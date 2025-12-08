@@ -355,14 +355,14 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
 
         blogModal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        document.body.style.overflow = 'hidden';
     }
 
     // Close Modal Logic
     if (closeModal) {
         closeModal.addEventListener('click', () => {
             blogModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = '';
         });
     }
 
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('click', (e) => {
         if (e.target === blogModal) {
             blogModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = '';
         }
     });
 });
