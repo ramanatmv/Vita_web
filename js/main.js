@@ -303,7 +303,7 @@ document.addEventListener('click', (e) => {
 // ============================================
 // BLOG FUNCTIONALITY
 // ============================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const blogGrid = document.getElementById('blogGrid');
     const blogModal = document.getElementById('blogModal');
     const modalBody = document.getElementById('modalBody');
@@ -325,9 +325,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     <a href="#" class="read-more" data-id="${post.id}">Read Full Article →</a>
                 </div>
             `;
-            
+
             // Add click event to open modal
-            card.addEventListener('click', function(e) {
+            card.addEventListener('click', function (e) {
                 e.preventDefault();
                 openBlogModal(post);
             });
@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Open Modal
     function openBlogModal(post) {
         if (!blogModal || !modalBody) return;
-        
+
         modalBody.innerHTML = `
             <div class="modal-post-header">
                 <span class="blog-category" style="color:var(--primary); margin-bottom:0.5rem;">${post.category}</span>
@@ -353,8 +353,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 ${post.content}
             </div>
         `;
-        
-        blogModal.style.display = 'block';
+
+        blogModal.style.display = 'flex';
         document.body.style.overflow = 'hidden'; // Prevent background scrolling
     }
 
