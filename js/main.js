@@ -166,10 +166,9 @@ function scrollToTop() {
     });
 }
 
-// ============================================
-// FORM SUBMISSION HANDLER
-// ============================================
 function handleFormSubmit(event) {
+    event.preventDefault(); // Prevent default form submission
+
     const form = event.target;
     const formMessage = document.getElementById('formMessage');
     const submitButton = form.querySelector('.submit-button');
@@ -183,9 +182,44 @@ function handleFormSubmit(event) {
     formMessage.className = 'info';
     formMessage.textContent = '📧 Sending your idea submission...';
 
-    // Allow the form to submit normally (it will POST to formsubmit.co)
-    // The service will redirect to a thank you page or show a confirmation
-    return true;
+    // Create FormData and submit via fetch
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+        .then(response => {
+            // Show success message
+            formMessage.className = 'success';
+            formMessage.textContent = '✓ Thank you! Your idea has been submitted successfully. We\'ll review it and get back to you soon.';
+
+            // Reset the form
+            form.reset();
+            submitButton.disabled = false;
+            submitButton.textContent = 'Submit Your Idea';
+
+            // Scroll to the message
+            formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Hide message after 10 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 10000);
+        })
+        .catch(error => {
+            // Show error message
+            formMessage.className = 'error';
+            formMessage.textContent = '❌ There was an error submitting your idea. Please try again or email us directly at ramana@vitainspire.com';
+
+            submitButton.disabled = false;
+            submitButton.textContent = 'Submit Your Idea';
+        });
+
+    return false;
 }
 
 // Alternative: Keep the old function for backwards compatibility
