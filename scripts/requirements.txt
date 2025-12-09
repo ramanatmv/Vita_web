@@ -1,2 +1,2 @@
-google-generativeai
-duckduckgo-search
+google-generativeai>=0.3.0
+ddgs
