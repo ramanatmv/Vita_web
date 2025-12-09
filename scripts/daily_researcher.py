@@ -10,9 +10,15 @@ import textwrap
 
 try:
     import google.generativeai as genai
-    from duckduckgo_search import DDGS
-except ImportError:
-    print("Error: Missing libraries. Please run: pip install google-generativeai duckduckgo-search")
+    try:
+        from duckduckgo_search import DDGS # Old package
+    except ImportError:
+        from ddgs import DDGS # New package possibly? Or maybe the package name is ddgs but module is different?
+        # Actually, let's just stick to the specific error: "Error: Missing libraries..."
+        # This catch-all except marks it as missing. 
+        # I want to see the REAL error.
+except ImportError as e:
+    print(f"Error: Missing libraries. {e}")
     exit(1)
 
 # Configuration
