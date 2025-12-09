@@ -5,6 +5,9 @@ on:
     # Runs at 09:00 UTC every day (2:30 PM IST)
     - cron: '0 9 * * *'
   workflow_dispatch: # Allows manual triggering from GitHub UI
+  push:
+    branches:
+      - main
 
 jobs:
   research-and-publish:
