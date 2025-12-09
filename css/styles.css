@@ -136,7 +136,7 @@ nav.scrolled {
 }
 
 .ai-highlight {
-    background: linear-gradient(90deg, #FF3CAC, #784BA0, #2B86C5, #FF3CAC);
+    background: linear-gradient(90deg, #FF9966, #FFD700, #32CC32, #FF9966);
     background-size: 300% auto;
     -webkit-background-clip: text;
     background-clip: text;
