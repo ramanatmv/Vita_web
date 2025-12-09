@@ -135,6 +135,28 @@ nav.scrolled {
     }
 }
 
+.ai-highlight {
+    background: linear-gradient(90deg, #FF3CAC, #784BA0, #2B86C5, #FF3CAC);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    display: inline-block;
+    animation: ai-flow 4s linear infinite;
+    text-shadow: 0 0 20px rgba(120, 75, 160, 0.3);
+}
+
+@keyframes ai-flow {
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 300% center;
+    }
+}
+
 .nav-links {
     display: flex;
     gap: 2rem;
