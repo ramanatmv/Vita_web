@@ -47,7 +47,7 @@ def generate_blog_content(topic, search_results):
         return None
 
     genai.configure(api_key=API_KEY)
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-2.5-flash')
 
     search_context = "\n".join([f"- {r['title']}: {r['body']} (Link: {r['href']})" for r in search_results])
     
