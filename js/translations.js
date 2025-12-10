@@ -15,6 +15,7 @@ const translations = {
         "hero_btn_learn": "Learn More →",
         "hero_btn_submit": "Submit an Idea",
         "hero_btn_involved": "Get Involved",
+        "hero_btn_fellowship": "Join Fellowship",
 
         // Stats
         "stat_engineers": "Engineers Teamed",
@@ -89,6 +90,7 @@ const translations = {
         "hero_btn_learn": "और जानें →",
         "hero_btn_submit": "एक विचार भेजें",
         "hero_btn_involved": "जुड़ें",
+        "hero_btn_fellowship": "फेलोशिप में शामिल हों",
 
         // Stats
         "stat_engineers": "इंजीनियर्स की टीम",

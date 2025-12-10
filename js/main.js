@@ -309,9 +309,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const modalBody = document.getElementById('modalBody');
     const closeModal = document.querySelector('.close-modal');
 
-    // Render Blog Posts
+    // Store all posts for the "View All" modal
+    window.allBlogPosts = typeof blogPosts !== 'undefined' ? blogPosts : [];
+
+    // Get latest post per category
+    function getLatestPerCategory(posts) {
+        const categoryMap = new Map();
+        posts.forEach(post => {
+            if (!categoryMap.has(post.category)) {
+                categoryMap.set(post.category, post);
+            }
+            // Since posts are ordered newest first, we keep the first one we encounter
+        });
+        return Array.from(categoryMap.values());
+    }
+
+    // Render Blog Posts - Only latest per category
     if (blogGrid && typeof blogPosts !== 'undefined') {
-        blogPosts.forEach(post => {
+        const latestPosts = getLatestPerCategory(blogPosts);
+
+        latestPosts.forEach(post => {
             const card = document.createElement('div');
             card.className = 'blog-card';
             card.innerHTML = `
@@ -334,6 +351,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
             blogGrid.appendChild(card);
         });
+
+        // Add "View All Articles" card at the end
+        const viewAllCard = document.createElement('div');
+        viewAllCard.className = 'blog-card view-all-card';
+        viewAllCard.innerHTML = `
+            <div class="view-all-content">
+                <span class="view-all-icon">📚</span>
+                <h3>View All Articles</h3>
+                <p>Browse our complete collection of ${blogPosts.length} research articles across all categories.</p>
+                <span class="view-all-btn">Explore Archive →</span>
+            </div>
+        `;
+        viewAllCard.addEventListener('click', function (e) {
+            e.preventDefault();
+            openAllArticlesModal();
+        });
+        blogGrid.appendChild(viewAllCard);
     }
 
     // Text-to-Speech Functionality
@@ -439,6 +473,127 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// Function to open All Articles modal
+function openAllArticlesModal() {
+    const blogModal = document.getElementById('blogModal');
+    const modalBody = document.getElementById('modalBody');
+
+    if (!blogModal || !modalBody) return;
+
+    // Group posts by category
+    const postsByCategory = {};
+    window.allBlogPosts.forEach(post => {
+        if (!postsByCategory[post.category]) {
+            postsByCategory[post.category] = [];
+        }
+        postsByCategory[post.category].push(post);
+    });
+
+    let categoriesHtml = '';
+    Object.keys(postsByCategory).forEach(category => {
+        const posts = postsByCategory[category];
+        categoriesHtml += `
+            <div class="archive-category">
+                <h3 class="archive-category-title">${category}</h3>
+                <div class="archive-posts-list">
+                    ${posts.map(post => `
+                        <div class="archive-post-item" onclick="openBlogPostFromArchive('${post.id}')">
+                            <span class="archive-post-date">${post.date}</span>
+                            <span class="archive-post-title">${post.title}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    });
+
+    modalBody.innerHTML = `
+        <div class="archive-modal-header">
+            <span class="archive-icon">📚</span>
+            <h2>All Research Articles</h2>
+            <p>Browse our complete collection of ${window.allBlogPosts.length} articles</p>
+        </div>
+        <div class="archive-content">
+            ${categoriesHtml}
+        </div>
+    `;
+
+    blogModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+// Function to open a specific blog post from the archive
+function openBlogPostFromArchive(postId) {
+    const post = window.allBlogPosts.find(p => p.id === postId);
+    if (post) {
+        openBlogModal(post);
+    }
+}
+
+// Move openBlogModal to global scope
+function openBlogModal(post) {
+    const blogModal = document.getElementById('blogModal');
+    const modalBody = document.getElementById('modalBody');
+
+    if (!blogModal || !modalBody) return;
+
+    // Stop any previous speech
+    if (window.speechSynthesis && window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+    }
+
+    modalBody.innerHTML = `
+        <div class="modal-post-header">
+            <span class="blog-category" style="color:var(--primary); margin-bottom:0.5rem;">${post.category}</span>
+            <h2>${post.title}</h2>
+            <div class="modal-metadata">
+                <span>📅 ${post.date}</span>
+                <span class="author-tag">👤 ${post.author}</span>
+            </div>
+            <button id="speakBtn" class="speak-button">🔊 Read Aloud</button>
+        </div>
+        <div class="modal-body">
+            ${post.content}
+        </div>
+    `;
+
+    blogModal.style.display = 'block';
+    blogModal.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+
+    // Attach Speech Event Listener
+    const speakBtn = document.getElementById('speakBtn');
+    if (speakBtn && window.speechSynthesis) {
+        let speaking = false;
+        speakBtn.addEventListener('click', () => {
+            if (speaking) {
+                window.speechSynthesis.cancel();
+                speaking = false;
+                speakBtn.innerHTML = '🔊 Read Aloud';
+                speakBtn.classList.remove('speaking');
+            } else {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = post.content;
+                const textToRead = `${post.title}. ${tempDiv.innerText}`;
+
+                const utterance = new SpeechSynthesisUtterance(textToRead);
+                utterance.rate = 1.0;
+                utterance.pitch = 1.0;
+                utterance.onend = () => {
+                    speaking = false;
+                    speakBtn.innerHTML = '🔊 Read Aloud';
+                    speakBtn.classList.remove('speaking');
+                };
+
+                window.speechSynthesis.speak(utterance);
+                speaking = true;
+                speakBtn.innerHTML = '⏹️ Stop Reading';
+                speakBtn.classList.add('speaking');
+            }
+        });
+    }
+}
 
 // ============================================
 // LANGUAGE MANAGER
