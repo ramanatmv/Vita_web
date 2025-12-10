@@ -480,3 +480,167 @@ function applyLanguage(lang) {
     // Dispatch event for other components (like blog) to listen to
     window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
 }
+
+// ============================================
+// JOB DESCRIPTIONS FOR FELLOWSHIP ROLES
+// ============================================
+const jobDescriptions = {
+    lead: {
+        title: "Lead Fellow (AI Product Lead – Fellowship Track)",
+        icon: "💼",
+        details: {
+            duration: "6-Month Fellowship (convertible to full-time)",
+            location: "Hyderabad, India (on-site)"
+        },
+        about: "Lead the technical direction of our AI fellowship projects, mentor fellows, and design impactful AI prototypes that serve real social needs.",
+        responsibilities: [
+            "Lead technical implementation & prototyping",
+            "Mentor Senior & Junior Fellows",
+            "Drive experimentation and feasibility testing",
+            "Contribute to pilot design with NGOs",
+            "Support architecture direction"
+        ],
+        requirements: [
+            "3–5+ years of AI/ML development",
+            "Portfolio of applied or working AI projects",
+            "Strong prototyping ability",
+            "Interest in mentoring and leadership",
+            "Deep desire to contribute to social impact"
+        ]
+    },
+    senior: {
+        title: "Senior Fellow (AI Engineer – Fellowship Track)",
+        icon: "💼",
+        details: {
+            duration: "6-Month Fellowship (convertible to full-time)",
+            location: "Hyderabad, India (on-site)"
+        },
+        about: "You will work on applied AI prototypes, explore real-world problems, and help build proof-of-concept solutions for NGO use cases.",
+        responsibilities: [
+            "Build ML prototypes",
+            "Experiment with LLMs, RAG, CV & agents",
+            "Explore domain problems (health/education/agri)",
+            "Participate in architecture discussions",
+            "Demonstrate working proof-of-concepts"
+        ],
+        requirements: [
+            "1–3 years practical AI/ML experience",
+            "Personal AI projects / GitHub portfolio",
+            "Curiosity and fast-learning ability",
+            "Excited to build meaningful solutions"
+        ]
+    },
+    junior: {
+        title: "Junior Fellow (AI Trainee – Fellowship Track)",
+        icon: "💼",
+        details: {
+            duration: "6-Month Fellowship (convertible to full-time)",
+            location: "Hyderabad, India (on-site)",
+            priority: "Underprivileged candidates strongly encouraged"
+        },
+        about: "A hands-on fellowship for early-career individuals who want to learn AI, build real prototypes, and contribute to social impact technology.",
+        responsibilities: [
+            "Learn AI tools and frameworks",
+            "Build guided prototypes",
+            "Assist with research & experimentation",
+            "Explore real NGO problem areas",
+            "Build your technical portfolio"
+        ],
+        requirements: [
+            "Recent graduate or self-taught learner",
+            "Strong interest in AI",
+            "Some exposure to coding or ML",
+            "Motivated, curious, willing to learn",
+            "Underprivileged background preferred"
+        ]
+    }
+};
+
+// Open Job Modal
+function openJobModal(role) {
+    const job = jobDescriptions[role];
+    if (!job) return;
+
+    const modal = document.getElementById('jobModal');
+    const modalBody = document.getElementById('jobModalBody');
+
+    if (!modal || !modalBody) return;
+
+    const priorityBadge = job.details.priority ?
+        `<span class="priority-badge">🌟 ${job.details.priority}</span>` : '';
+
+    modalBody.innerHTML = `
+        <div class="job-header">
+            <span class="job-icon">${job.icon}</span>
+            <h2>${job.title}</h2>
+            ${priorityBadge}
+        </div>
+        
+        <div class="job-details">
+            <span class="job-badge"><strong>⏱️ Duration:</strong> ${job.details.duration}</span>
+            <span class="job-badge"><strong>📍 Location:</strong> ${job.details.location}</span>
+        </div>
+
+        <div class="job-section">
+            <h3>About the Role</h3>
+            <p>${job.about}</p>
+        </div>
+
+        <div class="job-section">
+            <h3>What You'll Do</h3>
+            <ul class="job-list">
+                ${job.responsibilities.map(item => `<li>✔ ${item}</li>`).join('')}
+            </ul>
+        </div>
+
+        <div class="job-section">
+            <h3>Who You Are</h3>
+            <ul class="job-list">
+                ${job.requirements.map(item => `<li>✓ ${item}</li>`).join('')}
+            </ul>
+        </div>
+
+        <div class="job-apply-section">
+            <h3>📩 How to Apply</h3>
+            <p>Please send the following to <a href="mailto:careers@vitainspire.com">careers@vitainspire.com</a>:</p>
+            <ul class="job-list apply-list">
+                <li>📄 Your resume</li>
+                <li>🔗 Links to any GitHub / Kaggle / project portfolios</li>
+                <li>💬 Brief note on why you want to be part of this mission</li>
+                <li>💙 (Optional) Social impact involvement or personal story</li>
+            </ul>
+            <p class="subject-line"><strong>Subject line:</strong> "Application – ${job.title.split('(')[0].trim()} – VitaInspire AI Fellowship"</p>
+            <a href="mailto:careers@vitainspire.com?subject=Application – ${encodeURIComponent(job.title.split('(')[0].trim())} – VitaInspire AI Fellowship" class="apply-button">
+                Apply Now →
+            </a>
+        </div>
+    `;
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+// Close Job Modal
+function closeJobModal() {
+    const modal = document.getElementById('jobModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+}
+
+// Close modal on outside click
+document.addEventListener('click', function (e) {
+    const jobModal = document.getElementById('jobModal');
+    if (e.target === jobModal) {
+        closeJobModal();
+    }
+});
+
+// Close modal on ESC key
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        closeJobModal();
+    }
+});
+

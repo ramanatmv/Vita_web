@@ -6,6 +6,7 @@ const translations = {
         "nav_products": "Products",
         "nav_blog": "Daily AI Blog",
         "nav_submit": "Submit Idea",
+        "nav_fellowship": "Fellowship",
         "nav_contact": "Get Involved",
 
         // Hero
@@ -67,6 +68,7 @@ const translations = {
         "footer_about_title": "About VitaInspire",
         "footer_about_desc": "Building AI careers for underserved youth while delivering impactful AI products for NGOs in health, education, and agriculture.",
         "footer_quick_links": "Quick Links",
+        "footer_fellowship": "Join Fellowship",
         "footer_get_involved": "Get Involved",
         "footer_contact": "Contact",
         "footer_rights": "VitaInspire. All rights reserved. Built with ❤️ for social impact."
@@ -78,6 +80,7 @@ const translations = {
         "nav_products": "उत्पाद",
         "nav_blog": "दैनिक एआई ब्लॉग",
         "nav_submit": "विचार भेजें",
+        "nav_fellowship": "फेलोशिप",
         "nav_contact": "जुड़ें",
 
         // Hero
@@ -139,6 +142,7 @@ const translations = {
         "footer_about_title": "विटा इंस्पायर के बारे में",
         "footer_about_desc": "वंचित युवाओं के लिए एआई करियर का निर्माण करते हुए स्वास्थ्य, शिक्षा और कृषि में एनजीओ के लिए प्रभावशाली एआई उत्पाद प्रदान करना।",
         "footer_quick_links": "त्वरित लिंक",
+        "footer_fellowship": "फेलोशिप में शामिल हों",
         "footer_get_involved": "शामिल हों",
         "footer_contact": "संपर्क",
         "footer_rights": "विटा इंस्पायर। सर्वाधिकार सुरक्षित। सामाजिक प्रभाव के लिए ❤️ के साथ बनाया गया।"

@@ -53,6 +53,7 @@
                 <li><a href="#mission" data-i18n="nav_mission">Mission</a></li>
                 <li><a href="#products" data-i18n="nav_products">Products</a></li>
                 <li><a href="#blog" data-i18n="nav_blog">Daily AI Blog</a></li>
+                <li><a href="#hiring" data-i18n="nav_fellowship">Fellowship</a></li>
                 <li><a href="#submit-idea" data-i18n="nav_submit">Submit Idea</a></li>
                 <li><a href="#contact" class="cta-button" data-i18n="nav_contact">Get Involved</a></li>
 
@@ -443,6 +444,89 @@
     </section>
 
 
+    <!-- Hiring Section -->
+    <section id="hiring">
+        <div class="section-header">
+            <h2 class="section-title">Join the Fellowship</h2>
+            <p class="section-subtitle">
+                We are looking for curious builders with a passion for social impact.
+            </p>
+        </div>
+
+        <div class="hiring-grid">
+            <!-- Roles -->
+            <div class="hiring-card">
+                <div class="card-icon">🎓</div>
+                <h3>Fellowship Roles Open</h3>
+                <ul class="hiring-list role-links">
+                    <li><a href="#" onclick="openJobModal('lead'); return false;"><strong>💡 Lead Fellow</strong> (1
+                            position) <span class="view-jd">View JD →</span></a></li>
+                    <li><a href="#" onclick="openJobModal('senior'); return false;"><strong>💡 Senior Fellow</strong> (1
+                            position) <span class="view-jd">View JD →</span></a></li>
+                    <li><a href="#" onclick="openJobModal('junior'); return false;"><strong>💡 Junior Fellows</strong>
+                            (4 positions) <span class="view-jd">View JD →</span></a></li>
+                </ul>
+                <p class="underprivileged-note">Junior Fellow positions dedicated for underprivileged individuals</p>
+            </div>
+
+            <!-- Duties -->
+            <div class="hiring-card">
+                <div class="card-icon">👩‍💻</div>
+                <h3>What Fellows Will Do</h3>
+                <ul class="hiring-list check-list">
+                    <li>Learn modern AI (LLMs, agents, RAG, CV)</li>
+                    <li>Identify real NGO use cases</li>
+                    <li>Build AI prototypes</li>
+                    <li>Pilot them for real-world adoption</li>
+                    <li>Work with experienced mentors</li>
+                    <li>Earn conversion into full-time roles</li>
+                </ul>
+                <p class="hiring-note">
+                    <strong>Note:</strong> This is NOT a training course. It’s hands-on applied AI, building real
+                    products.
+                </p>
+            </div>
+
+            <!-- Compensation -->
+            <div class="hiring-card">
+                <div class="card-icon">💰</div>
+                <h3>Compensation</h3>
+                <div class="comp-details">
+                    <p><strong>During Fellowship:</strong> Monthly stipend + performance-based bonus every 6 months.</p>
+                    <p><strong>After Conversion:</strong> Full-time salary + semi-annual performance bonus starting at
+                        15% to 20% and increasing every 6 months up to 30%.</p>
+                </div>
+                <div class="comp-rewards">
+                    <p>This model rewards:</p>
+                    <div class="rewards-tags">
+                        <span>⭐ Skill Growth</span>
+                        <span>⭐ Innovation</span>
+                        <span>⭐ Impact</span>
+                        <span>⭐ Mission Alignment</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Candidate Profile -->
+            <div class="hiring-card">
+                <div class="card-icon">💙</div>
+                <h3>Who We’re Looking For</h3>
+                <ul class="hiring-list">
+                    <li>Curious builders & strong personal interest in AI</li>
+                    <li>Active AI projects or learning</li>
+                    <li>Passion for social impact</li>
+                    <li>Candidates from Tier 2/3 cities highly encouraged</li>
+                    <li>First-gen graduates welcome</li>
+                </ul>
+                <p class="hiring-quote">"We believe talent is universal. Opportunity is not."</p>
+            </div>
+        </div>
+
+        <div class="location-banner">
+            <h3>📍 Location: Hyderabad - India</h3>
+        </div>
+    </section>
+
 
     <!-- Contact/Footer Section -->
     <footer id="contact">
@@ -460,12 +544,14 @@
                 <p><a href="#about" data-i18n="nav_about">About Us</a></p>
                 <p><a href="#mission" data-i18n="nav_mission">Our Mission</a></p>
                 <p><a href="#products" data-i18n="nav_products">Products</a></p>
+                <p><a href="#hiring" data-i18n="footer_fellowship">Join Fellowship</a></p>
                 <p><a href="#submit-idea" data-i18n="nav_submit">Submit an Idea</a></p>
             </div>
 
             <div class="footer-section">
                 <h3 data-i18n="footer_get_involved">Get Involved</h3>
                 <p><a href="#submit-idea" data-i18n="nav_submit">Submit an Idea</a></p>
+                <p><a href="#hiring" data-i18n="footer_fellowship">Join Fellowship</a></p>
             </div>
 
             <div class="footer-section">
@@ -493,6 +579,16 @@
             <span class="close-modal">&times;</span>
             <div id="modalBody">
                 <!-- Modal content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Description Modal -->
+    <div id="jobModal" class="modal">
+        <div class="modal-content job-modal-content">
+            <span class="close-modal" onclick="closeJobModal()">&times;</span>
+            <div id="jobModalBody">
+                <!-- Job description content will be inserted here -->
             </div>
         </div>
     </div>
