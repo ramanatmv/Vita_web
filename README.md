@@ -6,7 +6,7 @@
 
 VitaInspire is a groundbreaking social impact initiative that bridges two critical gaps:
 - **Talent Gap**: Providing AI career pathways for underserved youth
-- **Technology Gap**: Delivering enterprise-grade AI solutions to NGOs at no cost
+- **Technology Gap**: Delivering enterprise-grade AI solutions to NGOs/Social Enterprises at no cost
 
 ## 🎯 Mission
 

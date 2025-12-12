@@ -11,7 +11,7 @@ const translations = {
 
         // Hero
         "hero_title": "Building AI Careers,<br>Transforming Social Impact",
-        "hero_subtitle": "Empowering underserved youth with AI career pathways while delivering cutting-edge AI solutions to NGOs tackling critical challenges in health, education, and agriculture.",
+        "hero_subtitle": "Empowering underserved youth with AI career pathways while delivering cutting-edge AI solutions to NGOs/Social Enterprises tackling critical challenges in health, education, and agriculture.",
         "hero_btn_learn": "Learn More →",
         "hero_btn_submit": "Submit an Idea",
         "hero_btn_involved": "Get Involved",
@@ -30,8 +30,8 @@ const translations = {
         "impact_talent_desc": "Graduates from low-income families lack access to high-quality AI/ML career pathways and mentorship. Despite their talent and drive, systemic barriers prevent them from entering the AI field.",
         "impact_talent_sol": "<strong>Our Solution:</strong> Create structured career pathways with mentorship, training, and real-world project experience that transforms promising graduates into skilled AI engineers.",
         "impact_tech_title": "💻 The Technology Gap",
-        "impact_tech_desc": "NGOs struggle with inefficiencies—manual paperwork, lack of data infrastructure—but cannot afford expensive AI solutions. They need technology but lack resources to implement it.",
-        "impact_tech_sol": "<strong>Our Solution:</strong> Deliver enterprise-grade AI products at no cost or minimal cost to NGOs, enabling them to amplify their impact and serve more people effectively.",
+        "impact_tech_desc": "NGOs/Social Enterprises struggle with inefficiencies—manual paperwork, lack of data infrastructure—but cannot afford expensive AI solutions. They need technology but lack resources to implement it.",
+        "impact_tech_sol": "<strong>Our Solution:</strong> Deliver enterprise-grade AI products at no cost or minimal cost to NGOs/Social Enterprises, enabling them to amplify their impact and serve more people effectively.",
 
         // Mission
         "mission_title": "Our Mission",
@@ -39,13 +39,13 @@ const translations = {
         "mission_talent_title": "Talent Development",
         "mission_talent_desc": "Provide livelihoods and advanced AI career pathways for underprivileged graduates and engineers who have struggled to find stable employment. We invest in people with potential, not just credentials.",
         "mission_product_title": "Product Innovation",
-        "mission_product_desc": "Build and deploy AI products that solve urgent, specific problems for NGOs in health, education, and agriculture. Every product we create directly improves lives in underserved communities.",
+        "mission_product_desc": "Build and deploy AI products that solve urgent, specific problems for NGOs/Social Enterprises in health, education, and agriculture. Every product we create directly improves lives in underserved communities.",
         "mission_impact_title": "Sustainable Impact",
-        "mission_impact_desc": "Establish a foundation-funded, non-profit model with 2-3 year secured runway. IP owned by US entity; social-use license offered free or at-cost to NGOs globally.",
+        "mission_impact_desc": "Establish a foundation-funded, non-profit model with 2-3 year secured runway. IP owned by US entity; social-use license offered free or at-cost to NGOs/Social Enterprises globally.",
 
         // Products
         "products_title": "AI Products for Social Good",
-        "products_subtitle": "Practical AI solutions addressing real-world challenges faced by NGOs and social workers",
+        "products_subtitle": "Practical AI solutions addressing real-world challenges faced by NGOs/Social Enterprises and social workers",
 
         // Blog
         "blog_title": "Daily AI Research",
@@ -54,7 +54,7 @@ const translations = {
 
         // Form
         "form_title": "Have an AI Product Idea?",
-        "form_subtitle": "We're looking for impactful AI product ideas that can solve real problems for NGOs and underserved communities. Share your vision with us!",
+        "form_subtitle": "We're looking for impactful AI product ideas that can solve real problems for NGOs/Social Enterprises and underserved communities. Share your vision with us!",
         "label_name": "Your Name *",
         "label_email": "Email Address *",
         "label_org": "Organization (if applicable)",
@@ -67,7 +67,7 @@ const translations = {
 
         // Footer
         "footer_about_title": "About VitaInspire",
-        "footer_about_desc": "Building AI careers for underserved youth while delivering impactful AI products for NGOs in health, education, and agriculture.",
+        "footer_about_desc": "Building AI careers for underserved youth while delivering impactful AI products for NGOs/Social Enterprises in health, education, and agriculture.",
         "footer_quick_links": "Quick Links",
         "footer_fellowship": "Join Fellowship",
         "footer_get_involved": "Get Involved",

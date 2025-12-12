@@ -652,7 +652,7 @@ const jobDescriptions = {
             "Lead technical implementation & prototyping",
             "Mentor Senior & Junior Fellows",
             "Drive experimentation and feasibility testing",
-            "Contribute to pilot design with NGOs",
+            "Contribute to pilot design with NGOs/Social Enterprises",
             "Support architecture direction"
         ],
         requirements: [
