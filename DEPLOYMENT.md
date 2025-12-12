@@ -271,7 +271,7 @@ Once deployed, share your website:
 - Social media
 - Email signatures
 - Business cards
-- NGO directories
+- Social Enterprise directories
 
 **Your VitaInspire website is now ready to make an impact! 🚀❤️**
 

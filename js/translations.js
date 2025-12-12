@@ -20,7 +20,7 @@ const translations = {
         // Stats
         "stat_engineers": "Engineers Teamed",
         "stat_products": "AI Products being Explored",
-        "stat_ngos": "NGO collaborators being pursued",
+        "stat_ngos": "Social Impact collaborators being pursued",
         "stat_runway": "Years Secured Runway",
 
         // About

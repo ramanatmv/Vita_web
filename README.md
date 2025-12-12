@@ -151,7 +151,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Built with passion for social impact
 - Inspired by the need to bridge technology and opportunity gaps
-- Special thanks to all NGO partners and contributors
+- Special thanks to all Social Enterprise partners and contributors
 
 ## 📊 Performance Metrics
 

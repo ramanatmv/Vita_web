@@ -670,7 +670,7 @@ const jobDescriptions = {
             duration: "6-Month Fellowship (convertible to full-time)",
             location: "Hyderabad, India (on-site)"
         },
-        about: "You will work on applied AI prototypes, explore real-world problems, and help build proof-of-concept solutions for NGO use cases.",
+        about: "You will work on applied AI prototypes, explore real-world problems, and help build proof-of-concept solutions for Social Enterprise use cases.",
         responsibilities: [
             "Build ML prototypes",
             "Experiment with LLMs, RAG, CV & agents",
@@ -698,7 +698,7 @@ const jobDescriptions = {
             "Learn AI tools and frameworks",
             "Build guided prototypes",
             "Assist with research & experimentation",
-            "Explore real NGO problem areas",
+            "Explore real Social Enterprise problem areas",
             "Build your technical portfolio"
         ],
         requirements: [
