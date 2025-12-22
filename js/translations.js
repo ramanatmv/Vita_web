@@ -18,9 +18,9 @@ const translations = {
         "hero_btn_fellowship": "Join Fellowship",
 
         // Stats
-        "stat_engineers": "Engineers Teamed",
-        "stat_products": "AI Products being Explored",
-        "stat_ngos": "Social Impact collaborators being pursued",
+        "stat_engineers": "Engineering Fellows",
+        "stat_products": "AI Product Initiatives",
+        "stat_ngos": "Social Impact Partnership Pipeline",
         "stat_runway": "Years Secured Runway",
 
         // About
@@ -93,9 +93,9 @@ const translations = {
         "hero_btn_fellowship": "फेलोशिप में शामिल हों",
 
         // Stats
-        "stat_engineers": "इंजीनियर्स की टीम",
-        "stat_products": "एआई उत्पादों की खोज",
-        "stat_ngos": "एनजीओ सहयोगी",
+        "stat_engineers": "इंजीनियरिंग फेलो",
+        "stat_products": "एआई उत्पाद पहल",
+        "stat_ngos": "सामाजिक प्रभाव साझेदारी पाइपलाइन",
         "stat_runway": "वर्षों की सुरक्षित फंडिंग",
 
         // About
