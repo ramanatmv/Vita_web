@@ -312,21 +312,25 @@ document.addEventListener('DOMContentLoaded', function () {
     // Store all posts for the "View All" modal
     window.allBlogPosts = typeof blogPosts !== 'undefined' ? blogPosts : [];
 
-    // Get latest post per category
-    function getLatestPerCategory(posts) {
-        const categoryMap = new Map();
-        posts.forEach(post => {
-            if (!categoryMap.has(post.category)) {
-                categoryMap.set(post.category, post);
-            }
-            // Since posts are ordered newest first, we keep the first one we encounter
-        });
-        return Array.from(categoryMap.values());
+    // Number of latest posts to show
+    const LATEST_POSTS_COUNT = 4;
+
+    // Get the N latest posts (posts should be ordered newest first in blog-posts.js)
+    function getLatestPosts(posts, count) {
+        return posts.slice(0, count);
     }
 
-    // Render Blog Posts - Only latest per category
+    // Get archived posts (all posts except the latest N)
+    function getArchivedPosts(posts, count) {
+        return posts.slice(count);
+    }
+
+    // Store archived posts globally for the archive modal
+    window.archivedBlogPosts = typeof blogPosts !== 'undefined' ? getArchivedPosts(blogPosts, LATEST_POSTS_COUNT) : [];
+
+    // Render Blog Posts - Only latest 4 posts
     if (blogGrid && typeof blogPosts !== 'undefined') {
-        const latestPosts = getLatestPerCategory(blogPosts);
+        const latestPosts = getLatestPosts(blogPosts, LATEST_POSTS_COUNT);
 
         latestPosts.forEach(post => {
             const card = document.createElement('div');
@@ -352,22 +356,25 @@ document.addEventListener('DOMContentLoaded', function () {
             blogGrid.appendChild(card);
         });
 
-        // Add "View All Articles" card at the end
-        const viewAllCard = document.createElement('div');
-        viewAllCard.className = 'blog-card view-all-card';
-        viewAllCard.innerHTML = `
-            <div class="view-all-content">
-                <span class="view-all-icon">📚</span>
-                <h3>View All Articles</h3>
-                <p>Browse our complete collection of ${blogPosts.length} research articles across all categories.</p>
-                <span class="view-all-btn">Explore Archive →</span>
-            </div>
-        `;
-        viewAllCard.addEventListener('click', function (e) {
-            e.preventDefault();
-            openAllArticlesModal();
-        });
-        blogGrid.appendChild(viewAllCard);
+        // Add "View Archives" card at the end
+        const archivedCount = window.archivedBlogPosts.length;
+        if (archivedCount > 0) {
+            const viewAllCard = document.createElement('div');
+            viewAllCard.className = 'blog-card view-all-card';
+            viewAllCard.innerHTML = `
+                <div class="view-all-content">
+                    <span class="view-all-icon">📚</span>
+                    <h3>Archives</h3>
+                    <p>Browse ${archivedCount} more research articles in our archives.</p>
+                    <span class="view-all-btn">Explore Archives →</span>
+                </div>
+            `;
+            viewAllCard.addEventListener('click', function (e) {
+                e.preventDefault();
+                openArchivesModal();
+            });
+            blogGrid.appendChild(viewAllCard);
+        }
     }
 
     // Text-to-Speech Functionality
@@ -474,7 +481,56 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Function to open All Articles modal
+// Function to open Archives modal (shows only archived posts, not the latest 4)
+function openArchivesModal() {
+    const blogModal = document.getElementById('blogModal');
+    const modalBody = document.getElementById('modalBody');
+
+    if (!blogModal || !modalBody) return;
+
+    // Group archived posts by category
+    const postsByCategory = {};
+    window.archivedBlogPosts.forEach(post => {
+        if (!postsByCategory[post.category]) {
+            postsByCategory[post.category] = [];
+        }
+        postsByCategory[post.category].push(post);
+    });
+
+    let categoriesHtml = '';
+    Object.keys(postsByCategory).forEach(category => {
+        const posts = postsByCategory[category];
+        categoriesHtml += `
+            <div class="archive-category">
+                <h3 class="archive-category-title">${category}</h3>
+                <div class="archive-posts-list">
+                    ${posts.map(post => `
+                        <div class="archive-post-item" onclick="openBlogPostFromArchive('${post.id}')">
+                            <span class="archive-post-date">${post.date}</span>
+                            <span class="archive-post-title">${post.title}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    });
+
+    modalBody.innerHTML = `
+        <div class="archive-modal-header">
+            <span class="archive-icon">📚</span>
+            <h2>Research Archives</h2>
+            <p>Browse our collection of ${window.archivedBlogPosts.length} archived research articles</p>
+        </div>
+        <div class="archive-content">
+            ${categoriesHtml}
+        </div>
+    `;
+
+    blogModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+// Keep openAllArticlesModal for backwards compatibility (shows all articles)
 function openAllArticlesModal() {
     const blogModal = document.getElementById('blogModal');
     const modalBody = document.getElementById('modalBody');
