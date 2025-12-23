@@ -312,25 +312,41 @@ document.addEventListener('DOMContentLoaded', function () {
     // Store all posts for the "View All" modal
     window.allBlogPosts = typeof blogPosts !== 'undefined' ? blogPosts : [];
 
-    // Number of latest posts to show
+    // Number of latest posts to show (each from a different category)
     const LATEST_POSTS_COUNT = 4;
 
-    // Get the N latest posts (posts should be ordered newest first in blog-posts.js)
-    function getLatestPosts(posts, count) {
-        return posts.slice(0, count);
+    // Get the N latest posts from different categories (no duplicate categories)
+    // Posts should be ordered newest first in blog-posts.js
+    function getLatestUniqueByCategory(posts, count) {
+        const selectedPosts = [];
+        const usedCategories = new Set();
+        const archivedPosts = [];
+
+        for (const post of posts) {
+            if (selectedPosts.length < count && !usedCategories.has(post.category)) {
+                // This post is from a new category, add to display
+                selectedPosts.push(post);
+                usedCategories.add(post.category);
+            } else {
+                // Either we have enough posts or category already used, archive it
+                archivedPosts.push(post);
+            }
+        }
+
+        return { displayPosts: selectedPosts, archivedPosts: archivedPosts };
     }
 
-    // Get archived posts (all posts except the latest N)
-    function getArchivedPosts(posts, count) {
-        return posts.slice(count);
-    }
+    // Get latest posts and archived posts
+    const { displayPosts, archivedPosts } = typeof blogPosts !== 'undefined'
+        ? getLatestUniqueByCategory(blogPosts, LATEST_POSTS_COUNT)
+        : { displayPosts: [], archivedPosts: [] };
 
     // Store archived posts globally for the archive modal
-    window.archivedBlogPosts = typeof blogPosts !== 'undefined' ? getArchivedPosts(blogPosts, LATEST_POSTS_COUNT) : [];
+    window.archivedBlogPosts = archivedPosts;
 
-    // Render Blog Posts - Only latest 4 posts
+    // Render Blog Posts - Only latest 4 posts (each from different category)
     if (blogGrid && typeof blogPosts !== 'undefined') {
-        const latestPosts = getLatestPosts(blogPosts, LATEST_POSTS_COUNT);
+        const latestPosts = displayPosts;
 
         latestPosts.forEach(post => {
             const card = document.createElement('div');
