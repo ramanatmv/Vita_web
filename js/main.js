@@ -871,3 +871,120 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
+// ============================================
+// NEW YEAR BANNER FUNCTIONALITY
+// ============================================
+let currentSlide = 0;
+let bannerInterval = null;
+const SLIDE_DURATION = 4000; // 4 seconds per slide
+
+// Initialize banner on page load
+document.addEventListener('DOMContentLoaded', function () {
+    const banner = document.getElementById('newYearBanner');
+
+    // Check if banner was previously closed in this session
+    if (sessionStorage.getItem('newYearBannerClosed') === 'true') {
+        if (banner) {
+            banner.classList.add('hidden');
+        }
+        return;
+    }
+
+    // Start auto-rotation
+    startBannerRotation();
+});
+
+// Start automatic slide rotation
+function startBannerRotation() {
+    bannerInterval = setInterval(() => {
+        nextSlide();
+    }, SLIDE_DURATION);
+}
+
+// Stop rotation (when user interacts)
+function stopBannerRotation() {
+    if (bannerInterval) {
+        clearInterval(bannerInterval);
+        bannerInterval = null;
+    }
+}
+
+// Go to next slide
+function nextSlide() {
+    const slides = document.querySelectorAll('.banner-slide');
+    const indicators = document.querySelectorAll('.indicator');
+
+    if (slides.length === 0) return;
+
+    // Remove active class from current slide
+    slides[currentSlide].classList.remove('active');
+    indicators[currentSlide].classList.remove('active');
+
+    // Move to next slide
+    currentSlide = (currentSlide + 1) % slides.length;
+
+    // Add active class to new slide
+    slides[currentSlide].classList.add('active');
+    indicators[currentSlide].classList.add('active');
+}
+
+// Go to specific slide (called from indicator clicks)
+function goToSlide(index) {
+    const slides = document.querySelectorAll('.banner-slide');
+    const indicators = document.querySelectorAll('.indicator');
+
+    if (slides.length === 0 || index < 0 || index >= slides.length) return;
+
+    // Stop auto-rotation temporarily
+    stopBannerRotation();
+
+    // Remove active class from current slide
+    slides[currentSlide].classList.remove('active');
+    indicators[currentSlide].classList.remove('active');
+
+    // Set new current slide
+    currentSlide = index;
+
+    // Add active class to new slide
+    slides[currentSlide].classList.add('active');
+    indicators[currentSlide].classList.add('active');
+
+    // Restart auto-rotation after a delay
+    setTimeout(() => {
+        startBannerRotation();
+    }, SLIDE_DURATION);
+}
+
+// Close the New Year banner
+function closeNewYearBanner() {
+    const banner = document.getElementById('newYearBanner');
+    if (banner) {
+        // Add fade-out animation
+        banner.style.transition = 'all 0.3s ease';
+        banner.style.opacity = '0';
+        banner.style.transform = 'translateY(-100%)';
+
+        // Remove from DOM after animation
+        setTimeout(() => {
+            banner.classList.add('hidden');
+            banner.style.opacity = '';
+            banner.style.transform = '';
+        }, 300);
+
+        // Stop rotation
+        stopBannerRotation();
+
+        // Remember that user closed the banner (for this session)
+        sessionStorage.setItem('newYearBannerClosed', 'true');
+    }
+}
+
+// Close banner with ESC key
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        const banner = document.getElementById('newYearBanner');
+        if (banner && !banner.classList.contains('hidden')) {
+            closeNewYearBanner();
+        }
+    }
+});

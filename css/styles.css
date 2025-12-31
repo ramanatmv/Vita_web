@@ -2682,3 +2682,322 @@ html {
         font-size: 0.8rem;
     }
 }
+
+/* ============================================
+   NEW YEAR BANNER
+   ============================================ */
+.new-year-banner {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #e94560 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    padding: 1rem 2rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 999;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.new-year-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(240, 147, 251, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.banner-close {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+.banner-close:hover {
+    color: white;
+    transform: translateY(-50%) scale(1.2);
+}
+
+.banner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.banner-greeting {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.greeting-text {
+    font-size: 1.4rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700, #FFEC8B, #FFD700);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+    letter-spacing: 1px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 300% center;
+    }
+}
+
+.greeting-emoji {
+    font-size: 1.5rem;
+    animation: celebrateEmoji 1s ease-in-out infinite alternate;
+}
+
+.greeting-emoji:first-child {
+    animation-delay: 0s;
+}
+
+.greeting-emoji:last-child {
+    animation-delay: 0.5s;
+}
+
+@keyframes celebrateEmoji {
+    0% {
+        transform: scale(1) rotate(-5deg);
+    }
+
+    100% {
+        transform: scale(1.2) rotate(5deg);
+    }
+}
+
+.banner-slides {
+    width: 100%;
+    position: relative;
+    min-height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-slide {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    animation: fadeSlide 0.6s ease-out;
+    text-align: center;
+}
+
+.banner-slide.active {
+    display: flex;
+}
+
+@keyframes fadeSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.banner-icon {
+    font-size: 1.5rem;
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.banner-text {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.banner-indicators {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: white;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.indicator:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.banner-sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 1rem;
+    opacity: 0.6;
+    animation: sparkleFloat 4s ease-in-out infinite;
+}
+
+.sparkle:nth-child(1) {
+    left: 5%;
+    top: 20%;
+    animation-delay: 0s;
+}
+
+.sparkle:nth-child(2) {
+    right: 10%;
+    top: 30%;
+    animation-delay: 2s;
+}
+
+@keyframes sparkleFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translateY(-5px) rotate(10deg);
+        opacity: 1;
+    }
+}
+
+/* Banner hidden state */
+.new-year-banner.hidden {
+    display: none;
+}
+
+/* Mobile responsiveness for banner */
+@media (max-width: 768px) {
+    .new-year-banner {
+        padding: 0.75rem 2.5rem 0.75rem 1rem;
+    }
+
+    .banner-greeting {
+        margin-bottom: 0.25rem;
+    }
+
+    .greeting-text {
+        font-size: 1.1rem;
+    }
+
+    .greeting-emoji {
+        font-size: 1.2rem;
+    }
+
+    .banner-text {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .banner-icon {
+        font-size: 1.2rem;
+    }
+
+    .banner-slide {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .banner-close {
+        right: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .banner-sparkles {
+        display: none;
+    }
+
+    .banner-indicators {
+        margin-top: 0.5rem;
+    }
+
+    .indicator {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .greeting-text {
+        font-size: 1rem;
+    }
+
+    .greeting-emoji {
+        font-size: 1rem;
+    }
+
+    .banner-text {
+        font-size: 0.85rem;
+    }
+}

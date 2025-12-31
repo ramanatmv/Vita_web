@@ -68,6 +68,41 @@
         </div>
     </nav>
 
+    <!-- New Year Banner -->
+    <div class="new-year-banner" id="newYearBanner">
+        <div class="banner-close" onclick="closeNewYearBanner()" title="Close banner">&times;</div>
+        <div class="banner-content">
+            <div class="banner-greeting">
+                <span class="greeting-emoji">🎊</span>
+                <span class="greeting-text">Happy New Year 2026!</span>
+                <span class="greeting-emoji">🎊</span>
+            </div>
+            <div class="banner-slides">
+                <div class="banner-slide active">
+                    <span class="banner-icon">🌸</span>
+                    <span class="banner-text">A new year. A new beginning. Building AI that serves people first.</span>
+                </div>
+                <div class="banner-slide">
+                    <span class="banner-icon">✨</span>
+                    <span class="banner-text">In 2026, we commit to turning technology into real social impact.</span>
+                </div>
+                <div class="banner-slide">
+                    <span class="banner-icon">🌱</span>
+                    <span class="banner-text">From India, for communities that need innovation the most.</span>
+                </div>
+            </div>
+            <div class="banner-indicators">
+                <span class="indicator active" onclick="goToSlide(0)"></span>
+                <span class="indicator" onclick="goToSlide(1)"></span>
+                <span class="indicator" onclick="goToSlide(2)"></span>
+            </div>
+        </div>
+        <div class="banner-sparkles">
+            <span class="sparkle">🎆</span>
+            <span class="sparkle">🎇</span>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
