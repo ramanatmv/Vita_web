@@ -700,6 +700,54 @@ section {
     background: var(--info);
 }
 
+.product-timeline.research {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+/* Research Report Card Special Styling */
+.research-report-card {
+    border: 2px solid var(--primary);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
+}
+
+.research-report-card::before {
+    transform: scaleX(1) !important;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary)) !important;
+    background-size: 200% auto !important;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.product-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gradient-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    transition: var(--transition-normal);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+}
+
+.product-download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.35);
+}
+
 .product-description {
     color: var(--dark-gray);
     margin-bottom: 1.5rem;
@@ -2999,5 +3047,214 @@ html {
 
     .banner-text {
         font-size: 0.85rem;
+    }
+}
+
+/* ============================================
+   RESEARCH SECTION
+   ============================================ */
+#research {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#research::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+#research::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(118, 75, 162, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+#research>* {
+    position: relative;
+    z-index: 1;
+}
+
+.research-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.research-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 3rem;
+    max-width: 700px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow:
+        0 10px 40px rgba(102, 126, 234, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: var(--transition-normal);
+}
+
+.research-card.featured {
+    border-left: 5px solid var(--primary);
+}
+
+.research-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+    border-radius: 0 24px 0 100%;
+    z-index: 0;
+}
+
+.research-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 20px 60px rgba(102, 126, 234, 0.2),
+        0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.research-badge {
+    display: inline-block;
+    background: var(--gradient-primary);
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.research-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.research-card h3 {
+    font-size: 1.8rem;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.research-description {
+    color: var(--dark-gray);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.research-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.highlight-tag {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    color: var(--primary-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    transition: var(--transition-fast);
+}
+
+.highlight-tag:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+    transform: translateY(-2px);
+}
+
+.research-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gradient-primary);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: var(--transition-normal);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.research-download-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Research Section Responsive */
+@media (max-width: 768px) {
+    .research-card {
+        padding: 2rem;
+        margin: 0 1rem;
+    }
+
+    .research-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .research-icon {
+        font-size: 3rem;
+    }
+
+    .research-description {
+        font-size: 1rem;
+    }
+
+    .highlight-tag {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .research-download-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.9rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .research-card {
+        padding: 1.5rem;
+    }
+
+    .research-badge {
+        font-size: 0.8rem;
+        padding: 0.4rem 1rem;
+    }
+
+    .highlight-tag {
+        font-size: 0.8rem;
     }
 }
