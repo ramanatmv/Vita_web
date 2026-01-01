@@ -328,6 +328,34 @@ nav.scrolled {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+.hero-button-research {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background-size: 200% auto;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
+    animation: researchGlow 3s ease-in-out infinite;
+}
+
+@keyframes researchGlow {
+
+    0%,
+    100% {
+        background-position: 0% center;
+        box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
+    }
+
+    50% {
+        background-position: 100% center;
+        box-shadow: 0 6px 20px rgba(240, 147, 251, 0.5);
+    }
+}
+
+.hero-button-research:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(118, 75, 162, 0.5);
+}
+
 .hero-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
