@@ -57,3 +57,12 @@ coverage/
 # Miscellaneous
 *.orig
 .sass-cache/
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Google Drive / Secrets
+scripts/credentials.json
+scripts/token.pickle

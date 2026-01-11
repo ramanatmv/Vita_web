@@ -1,2 +1,17 @@
+# AI Research Generation
 google-generativeai>=0.3.0
 duckduckgo-search
+
+# Google Drive Integration
+google-api-python-client>=2.100.0
+google-auth-httplib2>=0.1.0
+google-auth-oauthlib>=1.0.0
+
+# Weekly Summary - Audio
+gTTS>=2.4.0
+
+# Weekly Summary - Slide Deck
+python-pptx>=0.6.21
+
+# Weekly Summary - Infographic
+Pillow>=10.0.0

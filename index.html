@@ -30,7 +30,7 @@
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css?v=7">
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -165,7 +165,7 @@
         <div class="impact-highlight">
             <h3>Our Dual Impact Model</h3>
             <div class="dual-impact">
-                <div class="impact-box">
+                <div class="impact-box" id="impact-talent">
                     <h4 data-i18n="impact_talent_title">🎓 The Talent Gap</h4>
                     <p data-i18n="impact_talent_desc">
                         Graduates from low-income families lack access to high-quality AI/ML career pathways and
@@ -178,7 +178,7 @@
                         skilled AI engineers.
                     </p>
                 </div>
-                <div class="impact-box">
+                <div class="impact-box" id="impact-tech">
                     <h4 data-i18n="impact_tech_title">💻 The Technology Gap</h4>
                     <p data-i18n="impact_tech_desc">
                         NGOs/Social Enterprises struggle with inefficiencies—manual paperwork, lack of data
@@ -209,31 +209,47 @@
 
         <div class="mission-grid">
             <div class="mission-card">
-                <div class="mission-icon">🎯</div>
-                <h3 data-i18n="mission_talent_title">Talent Development</h3>
-                <p data-i18n="mission_talent_desc">
-                    Provide livelihoods and advanced AI career pathways for underprivileged graduates and engineers who
-                    have struggled to find stable employment. We invest in people with potential, not just credentials.
-                </p>
+                <div class="mission-content">
+                    <div class="mission-icon">🎯</div>
+                    <h3 data-i18n="mission_talent_title">Talent Development</h3>
+                    <p data-i18n="mission_talent_desc">
+                        Provide livelihoods and advanced AI career pathways for underprivileged graduates and engineers
+                        who have struggled to find stable employment. We invest in people with potential, not just
+                        credentials.
+                    </p>
+                </div>
+                <div class="mission-image">
+                    <img src="assets/images/mission/talent.png" alt="Talent Development">
+                </div>
             </div>
 
             <div class="mission-card">
-                <div class="mission-icon">💡</div>
-                <h3 data-i18n="mission_product_title">Product Innovation</h3>
-                <p data-i18n="mission_product_desc">
-                    Build and deploy AI products that solve urgent, specific problems for NGOs/Social Enterprises in
-                    health, education, and
-                    agriculture. Every product we create directly improves lives in underserved communities.
-                </p>
+                <div class="mission-content">
+                    <div class="mission-icon">💡</div>
+                    <h3 data-i18n="mission_product_title">Product Innovation</h3>
+                    <p data-i18n="mission_product_desc">
+                        Build and deploy AI products that solve urgent, specific problems for NGOs/Social Enterprises in
+                        health, education, and agriculture. Every product we create directly improves lives in
+                        underserved communities.
+                    </p>
+                </div>
+                <div class="mission-image">
+                    <img src="assets/images/mission/innovation.png" alt="Product Innovation">
+                </div>
             </div>
 
             <div class="mission-card">
-                <div class="mission-icon">🌍</div>
-                <h3 data-i18n="mission_impact_title">Sustainable Impact</h3>
-                <p data-i18n="mission_impact_desc">
-                    Establish a foundation-funded, non-profit model with 2-3 year secured runway. IP owned by US entity;
-                    social-use license offered free or at-cost to NGOs/Social Enterprises globally.
-                </p>
+                <div class="mission-content">
+                    <div class="mission-icon">🌍</div>
+                    <h3 data-i18n="mission_impact_title">Sustainable Impact</h3>
+                    <p data-i18n="mission_impact_desc">
+                        Establish a foundation-funded, non-profit model with 2-3 year secured runway. IP owned by US
+                        entity; social-use license offered free or at-cost to NGOs/Social Enterprises globally.
+                    </p>
+                </div>
+                <div class="mission-image">
+                    <img src="assets/images/mission/impact.png" alt="Sustainable Impact">
+                </div>
             </div>
         </div>
     </section>
@@ -249,168 +265,200 @@
         </div>
 
         <div class="products-grid">
-            <!-- Product 1: AI Case Management Assistant -->
+            <!-- Product 1 -->
             <div class="product-card">
-                <div class="product-header">
-                    <div class="product-icon">📋</div>
-                    <h3>AI Case Management Assistant</h3>
+                <div class="product-card-inner">
+                    <div class="product-card-front">
+                        <img src="assets/images/products/case_management.png" alt="AI Case Management Assistant">
+                        <div class="product-card-front-overlay">
+                            <span class="product-icon-front">📋</span>
+                            <h3>AI Case Management Assistant</h3>
+                        </div>
+                    </div>
+                    <div class="product-card-back">
+                        <h3>AI Case Management Assistant</h3>
+                        <div class="product-timeline">In Pipeline</div>
+                        <p class="product-description">Reduces social worker paperwork by 60-70% through AI-powered
+                            summarization, triage suggestions, and automated form filling.</p>
+                        <ul class="product-features">
+                            <li>WhatsApp/web-based interface</li>
+                            <li>LLM-based case summarization</li>
+                            <li>Auto-fill government forms</li>
+                            <li>Report generation (PDF/CSV)</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="product-timeline">In Pipeline</div>
-                <p class="product-description">
-                    Reduces social worker paperwork by 60-70% through AI-powered
-                    summarization, triage suggestions, and automated form filling.
-                </p>
-                <ul class="product-features">
-                    <li>WhatsApp/web-based interface</li>
-                    <li>LLM-based case summarization</li>
-                    <li>Auto-fill government forms</li>
-                    <li>Follow-up recommendations</li>
-                    <li>Report generation (PDF/CSV)</li>
-                </ul>
             </div>
 
-            <!-- Product 2: Nutrition Deficiency Detection -->
+            <!-- Product 2 -->
             <div class="product-card">
-                <div class="product-header">
-                    <div class="product-icon">👶</div>
-                    <h3>Nutrition Deficiency Detection</h3>
+                <div class="product-card-inner">
+                    <div class="product-card-front">
+                        <img src="assets/images/products/nutrition.png" alt="Nutrition Deficiency Detection">
+                        <div class="product-card-front-overlay">
+                            <span class="product-icon-front">👶</span>
+                            <h3>Nutrition Deficiency Detection</h3>
+                        </div>
+                    </div>
+                    <div class="product-card-back">
+                        <h3>Nutrition Deficiency Detection</h3>
+                        <div class="product-timeline">In Pipeline</div>
+                        <p class="product-description">Computer vision tool that analyzes facial/body photos to predict
+                            malnutrition risk and flag referral needs for Anganwadi workers.</p>
+                        <ul class="product-features">
+                            <li>Mobile app/WhatsApp photo intake</li>
+                            <li>Anthropometry estimation</li>
+                            <li>Red/Yellow/Green risk scoring</li>
+                            <li>Clinical validation protocols</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="product-timeline">In Pipeline</div>
-                <p class="product-description">
-                    Computer vision tool that analyzes facial/body photos to predict
-                    malnutrition risk and flag referral needs for Anganwadi workers.
-                </p>
-                <ul class="product-features">
-                    <li>Mobile app/WhatsApp photo intake</li>
-                    <li>Anthropometry estimation</li>
-                    <li>Red/Yellow/Green risk scoring</li>
-                    <li>Admin dashboard for supervisors</li>
-                    <li>Clinical validation protocols</li>
-                </ul>
             </div>
 
-            <!-- Product 3: Student Dropout Predictor -->
+            <!-- Product 3 -->
             <div class="product-card">
-                <div class="product-header">
-                    <div class="product-icon">🎓</div>
-                    <h3>Student Dropout Predictor</h3>
+                <div class="product-card-inner">
+                    <div class="product-card-front">
+                        <img src="assets/images/products/education_dropout.png" alt="Student Dropout Predictor">
+                        <div class="product-card-front-overlay">
+                            <span class="product-icon-front">🎓</span>
+                            <h3>Student Dropout Predictor</h3>
+                        </div>
+                    </div>
+                    <div class="product-card-back">
+                        <h3>Student Dropout Predictor</h3>
+                        <div class="product-timeline exploring">Exploring</div>
+                        <p class="product-description">AI system that predicts dropout risk and identifies learning gaps
+                            to enable early intervention by schools and NGOs.</p>
+                        <ul class="product-features">
+                            <li>Dropout prediction models</li>
+                            <li>Learning gap analysis</li>
+                            <li>Intervention recommendations</li>
+                            <li>Teacher dashboards</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="product-timeline exploring">Exploring</div>
-                <p class="product-description">
-                    AI system that predicts dropout risk and identifies learning gaps to
-                    enable early intervention by schools and NGOs/Social Enterprises.
-                </p>
-                <ul class="product-features">
-                    <li>Dropout prediction models</li>
-                    <li>Learning gap analysis</li>
-                    <li>Intervention recommendations</li>
-                    <li>NLP for answer grading</li>
-                    <li>Teacher dashboards</li>
-                </ul>
             </div>
 
-            <!-- Product 4: Document Digitization & AI Search -->
+            <!-- Product 4 -->
             <div class="product-card">
-                <div class="product-header">
-                    <div class="product-icon">📄</div>
-                    <h3>Document Digitization & AI Search</h3>
+                <div class="product-card-inner">
+                    <div class="product-card-front">
+                        <img src="assets/images/products/digitization.png" alt="Document Digitization">
+                        <div class="product-card-front-overlay">
+                            <span class="product-icon-front">📄</span>
+                            <h3>Document Digitization & Search</h3>
+                        </div>
+                    </div>
+                    <div class="product-card-back">
+                        <h3>Document Digitization & Search</h3>
+                        <div class="product-timeline">In Pipeline</div>
+                        <p class="product-description">OCR pipeline with vector search enabling NGOs to unlock insights
+                            from decades of paper files and PDFs.</p>
+                        <ul class="product-features">
+                            <li>Intelligent OCR pipeline</li>
+                            <li>Vector store retrieval</li>
+                            <li>Natural language Q&A</li>
+                            <li>Multi-language support</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="product-timeline">In Pipeline</div>
-                <p class="product-description">
-                    OCR pipeline with vector search enabling NGOs/Social Enterprises to unlock insights from
-                    decades of paper files and PDFs.
-                </p>
-                <ul class="product-features">
-                    <li>Intelligent OCR pipeline</li>
-                    <li>Vector store retrieval</li>
-                    <li>Natural language Q&A</li>
-                    <li>Multi-language support</li>
-                    <li>Batch processing capability</li>
-                </ul>
             </div>
 
-            <!-- Product: The Voice of Health Data -->
+            <!-- Product 5 -->
             <div class="product-card">
-                <div class="product-header">
-                    <div class="product-icon">🎙️</div>
-                    <h3>The Voice of Health Data</h3>
+                <div class="product-card-inner">
+                    <div class="product-card-front">
+                        <img src="assets/images/products/voice_data.png" alt="The Voice of Health Data">
+                        <div class="product-card-front-overlay">
+                            <span class="product-icon-front">🎙️</span>
+                            <h3>The Voice of Health Data</h3>
+                        </div>
+                    </div>
+                    <div class="product-card-back">
+                        <h3>The Voice of Health Data</h3>
+                        <div class="product-timeline">In Pipeline</div>
+                        <p class="product-description">Voice-first collection tool. AI extracts structured fields from
+                            spoken notes in regional languages.</p>
+                        <ul class="product-features">
+                            <li>Voice-to-text & NLU</li>
+                            <li>Regional language support</li>
+                            <li>Offline storage & Batch upload</li>
+                            <li>Real-time monitoring</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="product-timeline">In Pipeline</div>
-                <p class="product-description">
-                    Voice-first data collection tool for frontline workers. AI extracts structured
-                    fields from spoken notes in regional languages, even offline.
-                </p>
-                <ul class="product-features">
-                    <li>Voice-to-text & Lightweight NLU</li>
-                    <li>Regional language support</li>
-                    <li>Offline storage & Batch upload</li>
-                    <li>Structured field extraction</li>
-                    <li>Real-time monitoring</li>
-                </ul>
             </div>
 
-            <!-- Product 5: AI Crop Advisory System -->
+            <!-- Product 6 -->
             <div class="product-card">
-                <div class="product-header">
-                    <div class="product-icon">🌾</div>
-                    <h3>AI Crop Advisory System</h3>
+                <div class="product-card-inner">
+                    <div class="product-card-front">
+                        <img src="assets/images/blog_headers/agriculture.png" alt="AI Crop Advisory System">
+                        <div class="product-card-front-overlay">
+                            <span class="product-icon-front">🌾</span>
+                            <h3>AI Crop Advisory System</h3>
+                        </div>
+                    </div>
+                    <div class="product-card-back">
+                        <h3>AI Crop Advisory System</h3>
+                        <div class="product-timeline">In Pipeline</div>
+                        <p class="product-description">Image-based crop disease detection with voice-based advisory in
+                            local languages for small farmers.</p>
+                        <ul class="product-features">
+                            <li>Plant disease detection</li>
+                            <li>WhatsApp image upload</li>
+                            <li>Voice instructions</li>
+                            <li>Offline capability</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="product-timeline">In Pipeline</div>
-                <p class="product-description">
-                    Image-based crop disease detection with voice-based advisory in local
-                    languages for small farmers.
-                </p>
-                <ul class="product-features">
-                    <li>Plant disease detection</li>
-                    <li>WhatsApp image upload</li>
-                    <li>Voice instructions (local languages)</li>
-                    <li>Treatment recommendations</li>
-                    <li>Offline capability</li>
-                </ul>
             </div>
 
-            <!-- Product 6: Skills Matching & Placement -->
+            <!-- Product 7 -->
             <div class="product-card">
-                <div class="product-header">
-                    <div class="product-icon">💼</div>
-                    <h3>Skills Matching & Placement</h3>
+                <div class="product-card-inner">
+                    <div class="product-card-front">
+                        <img src="assets/images/impact/talent.png" alt="Skills Matching & Placement">
+                        <div class="product-card-front-overlay">
+                            <span class="product-icon-front">💼</span>
+                            <h3>Skills Matching & Placement</h3>
+                        </div>
+                    </div>
+                    <div class="product-card-back">
+                        <h3>Skills Matching & Placement</h3>
+                        <div class="product-timeline exploring">Exploring</div>
+                        <p class="product-description">Job matching with skill gap detection and micro-training
+                            recommendations.</p>
+                        <ul class="product-features">
+                            <li>AI resume parser</li>
+                            <li>Skill gap identification</li>
+                            <li>Training recommendations</li>
+                            <li>Employer connections</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="product-timeline exploring">Exploring</div>
-                <p class="product-description">
-                    Job matching with skill gap detection and micro-training recommendations
-                    for low-income graduates.
-                </p>
-                <ul class="product-features">
-                    <li>AI resume parser</li>
-                    <li>Embedding-based job matching</li>
-                    <li>Skill gap identification</li>
-                    <li>Training recommendations</li>
-                    <li>Employer connections</li>
-                </ul>
             </div>
 
-            <!-- Research Report: AI for India's Last Mile -->
-            <div class="product-card research-report-card">
-                <div class="product-header">
-                    <div class="product-icon">📘</div>
-                    <h3>AI for India's Last Mile</h3>
+            <!-- Product 8: Research -->
+            <div class="product-card">
+                <div class="product-card-inner">
+                    <div class="product-card-front">
+                        <img src="assets/images/blog_headers/technology_community.png" alt="Research Report">
+                        <div class="product-card-front-overlay">
+                            <span class="product-icon-front">📘</span>
+                            <h3>AI for India's Last Mile</h3>
+                        </div>
+                    </div>
+                    <div class="product-card-back">
+                        <h3>AI for India's Last Mile</h3>
+                        <div class="product-timeline research">Research Report</div>
+                        <p class="product-description">A comprehensive exploration of how AI can revolutionize last-mile
+                            delivery of essential services.</p>
+                        <a href="assets/AI_for_India_s_Last_Mile.pdf" target="_blank" class="product-download-btn"
+                            style="margin-top:10px; display:inline-block;">📥 Download PDF</a>
+                    </div>
                 </div>
-                <div class="product-timeline research">Research Report</div>
-                <p class="product-description">
-                    A comprehensive exploration of how AI can revolutionize last-mile delivery
-                    of essential services—healthcare, education, agriculture, and government
-                    schemes—to India's underserved communities.
-                </p>
-                <ul class="product-features">
-                    <li>Last-mile service delivery challenges</li>
-                    <li>AI-powered solutions for scale</li>
-                    <li>Healthcare & education applications</li>
-                    <li>Agriculture & governance insights</li>
-                    <li>Implementation frameworks</li>
-                </ul>
-                <a href="assets/AI_for_India_s_Last_Mile.pdf" target="_blank" class="product-download-btn">
-                    📥 Download Report (PDF)
-                </a>
             </div>
         </div>
     </section>
@@ -531,11 +579,14 @@
                 <h3>Fellowship Roles Open</h3>
                 <ul class="hiring-list role-links">
                     <li><a href="#" onclick="openJobModal('lead'); return false;"><strong>💡 Lead Fellow</strong> (1
-                            position) <span class="filled-badge">✓ Filled</span> <span class="view-jd">View JD →</span></a></li>
+                            position) <span class="filled-badge">✓ Filled</span> <span class="view-jd">View JD
+                                →</span></a></li>
                     <li><a href="#" onclick="openJobModal('senior'); return false;"><strong>💡 Senior Fellow</strong> (1
-                            position) <span class="filled-badge">✓ Filled</span> <span class="view-jd">View JD →</span></a></li>
+                            position) <span class="filled-badge">✓ Filled</span> <span class="view-jd">View JD
+                                →</span></a></li>
                     <li><a href="#" onclick="openJobModal('junior'); return false;"><strong>💡 Junior Fellows</strong>
-                            (4 positions) <span class="filled-badge">✓ Filled</span> <span class="view-jd">View JD →</span></a></li>
+                            (4 positions) <span class="filled-badge">✓ Filled</span> <span class="view-jd">View JD
+                                →</span></a></li>
                 </ul>
                 <p class="underprivileged-note">Junior Fellow positions -underprivileged individuals encoraged</p>
             </div>
@@ -670,7 +721,7 @@
     <!-- JavaScript -->
     <script src="js/translations.js"></script>
     <script src="js/blog-posts.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=4"></script>
 </body>
 
 </html>

@@ -344,29 +344,156 @@ document.addEventListener('DOMContentLoaded', function () {
     // Store archived posts globally for the archive modal
     window.archivedBlogPosts = archivedPosts;
 
+    // Load blog assets manifest for infographics and audio
+    let blogAssets = {};
+    fetch('assets/blog/manifest.json')
+        .then(response => response.json())
+        .then(data => {
+            blogAssets = data;
+            console.log('Blog assets loaded:', Object.keys(blogAssets).length, 'posts with media');
+        })
+        .catch(err => console.log('Blog assets manifest not found'));
+
     // Render Blog Posts - Only latest 4 posts (each from different category)
     if (blogGrid && typeof blogPosts !== 'undefined') {
         const latestPosts = displayPosts;
 
         latestPosts.forEach(post => {
             const card = document.createElement('div');
-            card.className = 'blog-card';
+            card.className = 'blog-card blog-card-visual';
+
+            // Check if infographic and audio exist for this post
+            const hasInfographic = blogAssets[post.id]?.infographic;
+            const hasAudio = blogAssets[post.id]?.audio;
+            const infographicPath = hasInfographic || `assets/blog/infographics/${post.id}.png`;
+            const audioPath = hasAudio || `assets/blog/audio/${post.id}.mp3`;
+
             card.innerHTML = `
-                <div class="blog-card-header">
-                    <span class="blog-category">${post.category}</span>
+                <div class="blog-card-header-image">
+                    <img src="${infographicPath}?v=${new Date().getTime() + '6'}" alt="${post.title}" 
+                         onerror="this.src='assets/images/placeholder_blog.jpg'">
+                    <span class="blog-category-tag">${post.category}</span>
                 </div>
-                <div class="blog-card-content">
-                    <h3>${post.title}</h3>
-                    <span class="blog-date">${post.date}</span>
-                    <p class="blog-excerpt">${post.excerpt}</p>
-                    <a href="#" class="read-more" data-id="${post.id}" data-i18n="read_more">Read Full Article →</a>
+                <div class="blog-card-body">
+                    <div class="blog-meta-date">${post.date}</div>
+                    <h3 class="blog-title">${post.title}</h3>
+                    <div class="blog-card-footer">
+                        <button class="blog-audio-btn-text" data-audio="${audioPath}">
+                            🎧 Listen
+                        </button>
+                        <button class="blog-read-more">
+                            Read More →
+                        </button>
+                    </div>
                 </div>
             `;
 
-            // Add click event to open modal
-            card.addEventListener('click', function (e) {
+            // Audio button click - play/pause audio
+            const audioBtn = card.querySelector('.blog-audio-btn-text');
+            let audio = new Audio(audioPath);
+            let isPlaying = false;
+
+            audio.onended = () => {
+                audioBtn.innerHTML = '🎧 Listen';
+                audioBtn.classList.remove('playing');
+                isPlaying = false;
+                audio.currentTime = 0;
+            };
+
+            function useTTS() {
+                // Determine if we are pausing or playing TTS
+                if (window.speechSynthesis.speaking && isPlaying) {
+                    window.speechSynthesis.cancel();
+                    audioBtn.innerHTML = '🎧 Listen';
+                    audioBtn.classList.remove('playing');
+                    isPlaying = false;
+                    return;
+                }
+
+                // Stop any other media/TTS
+                if (window.speechSynthesis.speaking) window.speechSynthesis.cancel();
+
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = post.content;
+                const text = `${post.title}. ${tempDiv.innerText}`;
+                const utterance = new SpeechSynthesisUtterance(text);
+
+                utterance.onstart = () => {
+                    audioBtn.innerHTML = '⏸️ Pause';
+                    audioBtn.classList.add('playing');
+                    isPlaying = true;
+                };
+
+                utterance.onend = () => {
+                    audioBtn.innerHTML = '🎧 Listen';
+                    audioBtn.classList.remove('playing');
+                    isPlaying = false;
+                };
+
+                window.speechSynthesis.speak(utterance);
+            }
+
+            audio.onerror = () => {
+                console.log('Audio file missing event');
+                // We don't auto-play here on load, just note it. 
+                // The click handler will fail play() and trigger fallback.
+            };
+
+            audioBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
                 e.preventDefault();
+
+                // Stop any other visual/audio state
+                if (window.currentBlogAudio && window.currentBlogAudio !== audio) {
+                    window.currentBlogAudio.pause();
+                    window.currentBlogAudio.currentTime = 0;
+                }
+
+                // Clear other buttons
+                document.querySelectorAll('.blog-audio-btn-text.playing').forEach(btn => {
+                    if (btn !== audioBtn) {
+                        btn.innerHTML = '🎧 Listen';
+                        btn.classList.remove('playing');
+                    }
+                });
+
+                if (!isPlaying) {
+                    // Try to play MP3
+                    const playPromise = audio.play();
+
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            audioBtn.innerHTML = '⏸️ Pause';
+                            audioBtn.classList.add('playing');
+                            isPlaying = true;
+                            window.currentBlogAudio = audio;
+                        }).catch(err => {
+                            console.log('Audio play failed, switching to TTS:', err);
+                            useTTS();
+                        });
+                    }
+                } else {
+                    // Pause/Stop
+                    audio.pause();
+                    window.speechSynthesis.cancel(); // Also stop TTS if active
+                    audioBtn.innerHTML = '🎧 Listen';
+                    audioBtn.classList.remove('playing');
+                    isPlaying = false;
+                }
+            });
+
+            // View button (Read More)
+            const viewBtn = card.querySelector('.blog-read-more');
+            viewBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
                 openBlogModal(post);
+            });
+
+            card.addEventListener('click', function (e) {
+                if (!e.target.classList.contains('blog-audio-btn')) {
+                    e.preventDefault();
+                    openBlogModal(post);
+                }
             });
 
             blogGrid.appendChild(card);
@@ -418,8 +545,16 @@ document.addEventListener('DOMContentLoaded', function () {
     function openBlogModal(post) {
         if (!blogModal || !modalBody) return;
 
-        // Stop any previous speech
+        // Stop any previous speech or audio
         stopSpeaking();
+        if (window.currentBlogAudio) {
+            window.currentBlogAudio.pause();
+            window.currentBlogAudio.currentTime = 0;
+            document.querySelectorAll('.blog-audio-btn.playing').forEach(btn => {
+                btn.innerHTML = '🎧 Listen';
+                btn.classList.remove('playing');
+            });
+        }
 
         modalBody.innerHTML = `
             <div class="modal-post-header">
