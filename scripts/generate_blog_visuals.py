@@ -93,18 +93,25 @@ def create_blog_infographic(post, filename):
         # Define Header Images Dir
         header_images_dir = SCRIPT_DIR.parent / "assets" / "images" / "blog_headers"
 
-        # Load Base Image based on Category
+        # Load Base Image based on Category or Title keywords
+        text_to_check = (post['category'] + " " + post['title']).title()
+        
         base_image_name = "technology_community.png" # Default
-        if 'Health' in post['category']:
-            base_image_name = "health.png"
-        elif 'Agriculture' in post['category']:
-            base_image_name = "agriculture.png"
-        elif 'Education' in post['category'] or 'Learning' in post['category']:
-            base_image_name = "education.png"
-        elif 'Governance' in post['category']:
-            base_image_name = "governance.png"
-        elif 'Environment' in post['category'] or 'Climate' in post['category']:
-            base_image_name = "environment.png"
+        
+        if 'Woman' in text_to_check or 'Women' in text_to_check or 'Empowerment' in text_to_check or 'Gender' in text_to_check:
+             base_image_name = "woman_empowerment.png"
+        elif 'Health' in text_to_check:
+             base_image_name = "health.png"
+        elif 'Agriculture' in text_to_check:
+             base_image_name = "agriculture.png"
+        elif 'Education' in text_to_check or 'Learning' in text_to_check:
+             base_image_name = "education.png"
+        elif 'Governance' in text_to_check:
+             base_image_name = "governance.png"
+        elif 'Environment' in text_to_check or 'Climate' in text_to_check:
+             base_image_name = "environment.png"
+        elif 'Social' in text_to_check or 'Impact' in text_to_check:
+             base_image_name = "social_impact.png"
         
         base_image_path = header_images_dir / base_image_name
 

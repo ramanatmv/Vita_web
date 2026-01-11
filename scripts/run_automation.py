@@ -69,6 +69,21 @@ def run_daily_research():
         print(f"❌ Failed to upload to Drive: {e}\n")
         return False
     
+    # Step 4: Commit and Push changes to Live Site
+    print("Step 4: Updating Live Site (Git Push)...")
+    try:
+        import subprocess
+        # Git Add
+        subprocess.run(["git", "add", "."], check=True)
+        # Git Commit
+        commit_msg = f"Daily AI Research Update: {datetime.datetime.now().strftime('%Y-%m-%d')}"
+        subprocess.run(["git", "commit", "-m", commit_msg], check=True)
+        # Git Push
+        subprocess.run(["git", "push"], check=True)
+        print("✅ Git Push successful. Live site updated.\n")
+    except Exception as e:
+        print(f"❌ Git Push failed (or nothing to commit): {e}\n")
+    
     return True
 
 
