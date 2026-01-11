@@ -584,11 +584,9 @@ section {
 
 .impact-box {
     background: #222;
-    /* Fallback */
-    padding: 2.5rem;
-    border-radius: 15px;
-    border-left: 5px solid var(--accent);
-    /* Changed to Accent for pop */
+    padding: 0;
+    min-height: 500px;
+    border-radius: 20px;
     box-shadow: var(--shadow-sm);
     transition: var(--transition-normal);
     position: relative;
@@ -596,14 +594,15 @@ section {
     z-index: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 /* Specific Backgrounds */
 #impact-talent {
     background-image: url('../assets/images/impact/talent.png');
     background-size: cover;
-    background-position: center;
+    background-position: center top;
+    /* Focus on faces */
 }
 
 #impact-tech {
@@ -612,10 +611,28 @@ section {
     background-position: center;
 }
 
-/* Dark Overlay for Text Readability */
-/* Overlay removed for full visibility */
-.impact-box::before {
-    display: none;
+/* Floating Glass Card Style */
+.impact-content-overlay {
+    background: rgba(255, 255, 255, 0.03);
+    /* Crystal Clear */
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    margin: 1.5rem;
+    padding: 1.8rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 5px solid var(--accent);
+    transform: translateY(0);
+    transition: all 0.4s ease;
+}
+
+.impact-box:hover .impact-content-overlay {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.1);
+    /* Slightly apparent on hover */
+    backdrop-filter: blur(6px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .impact-box:hover {
@@ -623,28 +640,33 @@ section {
     box-shadow: var(--shadow-lg);
 }
 
-/* Typography Updates for Bright Background (No Overlay) */
+/* Typography Clean-up */
 .impact-box h4 {
-    color: #000;
-    /* Black Title */
-    margin-bottom: 1.2rem;
-    font-size: 1.75rem;
+    color: var(--primary);
+    margin-bottom: 0.8rem;
+    font-size: 1.5rem;
     font-weight: 800;
-    /* Strong white halo for readability */
-    text-shadow: 2px 2px 0px white, -1px -1px 0px white, 1px -1px 0px white, -1px 1px 0px white, 1px 1px 0px white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1), 2px 2px 4px rgba(255, 255, 255, 0.8);
+    /* Strong Halo */
 }
 
 .impact-box p {
     color: #000;
-    /* Pitch Black Text */
+    /* Pitch black */
     line-height: 1.6;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
-    /* Stronger White halo/outline */
-    text-shadow: 2px 2px 0px white, -1px -1px 0px white, 1px -1px 0px white, -1px 1px 0px white, 1px 1px 0px white;
-    background-color: transparent;
-    padding: 0;
-    box-shadow: none;
+    /* Bolder text */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 1px 1px 2px rgba(255, 255, 255, 0.8);
+    /* Strong Halo */
+    margin: 0;
+}
+
+.impact-divider {
+    border: 0;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 1rem 0;
 }
 
 .impact-box strong {

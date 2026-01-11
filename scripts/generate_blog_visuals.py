@@ -90,19 +90,23 @@ def create_blog_infographic(post, filename):
         accent_color = colors[2]
         
         # Load Base Image based on Category
-        base_image_path = None
+        # Define Header Images Dir
+        header_images_dir = SCRIPT_DIR.parent / "assets" / "images" / "blog_headers"
+
+        # Load Base Image based on Category
+        base_image_name = "technology_community.png" # Default
         if 'Health' in post['category']:
-            base_image_path = "../assets/images/blog_headers/health.png"
+            base_image_name = "health.png"
         elif 'Agriculture' in post['category']:
-            base_image_path = "../assets/images/blog_headers/agriculture.png"
+            base_image_name = "agriculture.png"
         elif 'Education' in post['category'] or 'Learning' in post['category']:
-            base_image_path = "../assets/images/blog_headers/education.png"
+            base_image_name = "education.png"
         elif 'Governance' in post['category']:
-            base_image_path = "../assets/images/blog_headers/governance.png"
+            base_image_name = "governance.png"
         elif 'Environment' in post['category'] or 'Climate' in post['category']:
-            base_image_path = "../assets/images/blog_headers/environment.png"
-        else:
-            base_image_path = "../assets/images/blog_headers/technology_community.png" # Tech/Default
+            base_image_name = "environment.png"
+        
+        base_image_path = header_images_dir / base_image_name
 
         try:
             img = Image.open(base_image_path).convert('RGB')

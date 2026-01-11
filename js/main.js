@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Load blog assets manifest for infographics and audio
     let blogAssets = {};
-    fetch('assets/blog/manifest.json')
+    fetch(`assets/blog/manifest.json?v=${new Date().getTime()}`)
         .then(response => response.json())
         .then(data => {
             blogAssets = data;
