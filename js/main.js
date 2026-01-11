@@ -1,5 +1,25 @@
 // VitaInspire - Main JavaScript File
 
+// Global Image Error Handler for Blog Cards
+window.handleBlogImageError = function (img, category) {
+    if (img.getAttribute('data-failed')) return;
+    img.setAttribute('data-failed', 'true');
+
+    // Map Categories to Base Images
+    const cat = (category || '').toLowerCase();
+    let fallback = 'technology_community.png'; // Default
+
+    if (cat.includes('health')) fallback = 'health.png';
+    else if (cat.includes('edu') || cat.includes('learn')) fallback = 'education.png';
+    else if (cat.includes('agri')) fallback = 'agriculture.png';
+    else if (cat.includes('gov')) fallback = 'governance.png';
+    else if (cat.includes('woman') || cat.includes('women') || cat.includes('empower') || cat.includes('gender')) fallback = 'woman_empowerment.png';
+    else if (cat.includes('env') || cat.includes('climate')) fallback = 'environment.png';
+    else if (cat.includes('social') || cat.includes('impact')) fallback = 'social_impact.png';
+
+    img.src = `assets/images/blog_headers/${fallback}`;
+};
+
 // ============================================
 // SMOOTH SCROLL FUNCTIONALITY
 // ============================================
@@ -370,8 +390,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             card.innerHTML = `
                 <div class="blog-card-header-image">
-                    <img src="${infographicPath}?v=${new Date().getTime() + '6'}" alt="${post.title}" 
-                         onerror="this.src='assets/images/placeholder_blog.jpg'">
+                    <img src="${infographicPath}?v=${new Date().getTime() + '7'}" alt="${post.title}" 
+                         onerror="handleBlogImageError(this, '${post.category}')">
                     <span class="blog-category-tag">${post.category}</span>
                 </div>
                 <div class="blog-card-body">
